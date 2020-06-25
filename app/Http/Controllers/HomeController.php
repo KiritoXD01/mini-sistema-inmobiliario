@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * Change the application language
+     * @param $language
+     */
+    public function changeLanguage($language)
+    {
+        session(['locale' => $language]);
+        return redirect()->back();
+    }
 }

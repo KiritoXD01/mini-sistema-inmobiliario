@@ -50,8 +50,15 @@ class User extends Authenticatable
     public function createdBy()
     {
         return $this->belongsTo('App\Models\User', 'created_by', 'id')->withDefault([
-            'id' => 0,
             'full_name' => "SYSTEM"
         ]);
+    }
+
+    /**
+     * Returns the full name
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->firstname} {$this->lastname}";
     }
 }
