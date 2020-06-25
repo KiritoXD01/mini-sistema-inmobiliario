@@ -33,14 +33,14 @@
             </div>
         @endif
         <div class="table-responsive">
-            <table class="table table-hover" id="datatable" width="100%" cellspacing="0">
+            <table class="table table-hover" id="datatable">
                 <thead>
                 <tr>
                     <th>@lang('messages.firstname')</th>
                     <th>@lang('messages.lastname')</th>
                     <th>Email</th>
                     <th>@lang('messages.status')</th>
-                    <th>@lang('messages.created_at')</th>
+                    <th>@lang('messages.userRole')</th>
                     <td>@lang('messages.actions')</td>
                 </tr>
                 </thead>
@@ -57,7 +57,7 @@
                                 <span class="badge badge-danger">@lang('messages.disabled')</span>
                             @endif
                         </td>
-                        <td>{{ $user->created_at }}</td>
+                        <td>{{ $user->roles->first()->name }}</td>
                         <td>
                             <form action="{{ route('user.destroy', $user->id) }}" method="post" id="formDelete{{ $user->id }}">
                                 @method("DELETE")
@@ -97,4 +97,14 @@
     </div>
 </div>
 <!-- End Table -->
+@endsection
+
+@section('javascript')
+    <script>
+        $(document).ready(function(){
+            $("#datatable").dataTable({
+                "order": [[ 0, "asc" ]]
+            });
+        });
+    </script>
 @endsection

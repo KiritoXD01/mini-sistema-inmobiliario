@@ -39,4 +39,8 @@ return [
     'yes' => "Yes",
     'disableItem' => "Do you want to disable this item?",
     'enableItem' => "Do you want to enable this item?",
+    'import' => 'Import',
+    'export' => 'Export',
+    'password' => 'Password',
+    'confirmPassword' => 'Confirm Password',
 ];

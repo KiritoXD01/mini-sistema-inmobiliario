@@ -6,7 +6,7 @@ return [
     'pleaseEnterEmail' => "Por favor, Introduzca su Email",
     'pleaseEnterPassword' => "Por favor, ingrese su contraseña",
     'pleaseWait' => 'Por favor espere',
-    'user' => 'User',
+    'user' => 'Usuario',
     'forgotPassword' => '¿Se te olvidó tu contraseña?',
     'close' => 'Cerrar',
     'send' => 'Enviar',
@@ -39,4 +39,8 @@ return [
     'yes' => "Si",
     'disableItem' => "Desea desactivar este elemento?",
     'enableItem' => "Desea activar este elemento?",
+    'import' => 'Importar',
+    'export' => 'Exportar',
+    'password' => 'Contraseña',
+    'confirmPassword' => 'Confirmar Contraseña',
 ];
