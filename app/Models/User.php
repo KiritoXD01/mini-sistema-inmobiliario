@@ -1,8 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -11,12 +10,18 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
+     * The table that relates to this model
+     */
+    protected $table = "users";
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstname', 'lastname', 'email', 'password',
+        'status', 'phonenumber', 'created_by', 'code'
     ];
 
     /**
@@ -35,5 +40,18 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'created_at'        => 'datetime',
+        'updated_at'        => 'datetime'
     ];
+
+    /**
+     * Get the current user's creator
+     */
+    public function createdBy()
+    {
+        return $this->belongsTo('App\Models\User', 'created_by', 'id')->withDefault([
+            'id' => 0,
+            'full_name' => "SYSTEM"
+        ]);
+    }
 }
