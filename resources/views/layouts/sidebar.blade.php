@@ -20,4 +20,12 @@
             <span>@lang('messages.users')</span>
         </a>
     </li>
+
+    <!-- Nav Item - Roles -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('userRole.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>@lang('messages.userRoles')</span>
+        </a>
+    </li>
 </ul>

@@ -47,3 +47,22 @@ Route::group(['prefix' => 'user'], function () {
     //DELETE: Deletes and user
     Route::delete('/{user}', 'UserController@destroy')->middleware('auth')->name('user.destroy');
 });
+
+Route::group(['prefix' => 'userRole'], function() {
+    //GET: Get all user roles
+    Route::get('/', 'UserRoleController@index')->middleware('auth')->name('userRole.index');
+    //GET: Create a new role view
+    Route::get('/create', 'UserRoleController@create')->middleware('auth')->name('userRole.create');
+    //GET: Edit an role view
+    Route::get('/{role}/edit', 'UserRoleController@edit')->middleware('auth')->name('userRole.edit');
+    //GET: Show an role view
+    Route::get('/{role}/show', 'UserRoleController@show')->middleware('auth')->name('userRole.show');
+    //POST: Create a new role
+    Route::post('/', 'UserRoleController@store')->middleware('auth')->name('userRole.store');
+    //POST: Change the role status
+    Route::post('/changeStatus/{role}', 'UserRoleController@changeStatus')->middleware('auth')->name('userRole.changeStatus');
+    //PATCH: Update an existing role
+    Route::patch('/{role}', 'UserRoleController@update')->middleware('auth')->name('userRole.update');
+    //DELETE: Deletes and role
+    Route::delete('/{role}', 'UserRoleController@destroy')->middleware('auth')->name('userRole.destroy');
+});
