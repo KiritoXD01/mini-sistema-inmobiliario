@@ -34,4 +34,7 @@ return [
     'roleCreated' => 'User Role created successfully',
     'roleUpdated' => 'User Role updated successfully',
     'roleDeleted' => 'User Role deleted successfully',
+    'back' => 'Back',
+    'deleteItem' => "Do you want to delete this item?",
+    'yes' => "Yes"
 ];

@@ -64,7 +64,7 @@
                                             @endcan
                                             <div class="dropdown-divider"></div>
                                             @can('user-role-status')
-                                                <form action="{{ route('userRole.changeStatus', $userRole->id) }}" method="post">
+                                                <form action="{{ route('userRole.changeStatus', $userRole->id) }}" method="post" id="formChangeStatus-{{ $userRole->id }}">
                                                     @csrf
                                                     <button type="submit" class="dropdown-item">
                                                         @if($userRole->status)
@@ -77,10 +77,10 @@
                                             @endcan
                                             <div class="dropdown-divider"></div>
                                             @can('user-role-delete')
-                                                <form action="{{ route('userRole.destroy', $userRole->id) }}" method="post">
+                                                <form action="{{ route('userRole.destroy', $userRole->id) }}" method="post" id="formDelete-{{ $userRole->id }}">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button type="submit" class="dropdown-item">
+                                                    <button type="button" class="dropdown-item" onclick="deleteItem({{ $userRole->id }})">
                                                         <i class="fa fa-trash fa-fw"></i> @lang('messages.delete')
                                                     </button>
                                                 </form>
@@ -101,6 +101,34 @@
 
 @section('javascript')
     <script>
+        function deleteItem(id) {
+            Swal
+                .fire({
+                    title: "@lang('messages.deleteItem')",
+                    icon: 'question',
+                    showCancelButton: true,
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    confirmButtonText: "@lang('messages.yes')",
+                    cancelButtonText: "No",
+                    reverseButtons: true
+                })
+                .then((result) => {
+                    if (result.value) {
+                        Swal.fire({
+                            title: "@lang('messages.pleaseWait')",
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            onOpen: () => {
+                                Swal.showLoading();
+                                document.getElementById(`formDelete-${id}`).submit();
+                            }
+                        });
+                    }
+                });
+        }
+
         $(document).ready(function(){
             $("#datatable").dataTable({
                 "order": [[ 0, "asc" ]]

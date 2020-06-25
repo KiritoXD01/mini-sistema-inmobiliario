@@ -34,4 +34,7 @@ return [
     'roleCreated' => 'Rol de usuario creado exitosamente',
     'roleUpdated' => 'Rol de usuario actualizado exitosamente',
     'roleDeleted' => 'Rol de usuario eliminado exitosamente',
+    'back' => 'Volver',
+    'deleteItem' => "Desea eliminar este elemento?",
+    'yes' => "Si"
 ];

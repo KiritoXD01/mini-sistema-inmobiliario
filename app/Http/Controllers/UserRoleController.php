@@ -63,6 +63,20 @@ class UserRoleController extends Controller
     }
 
     /**
+     * Show the edit view with the item information
+     * @param Role $role
+     * @method GET
+     */
+    public function show(Role $role)
+    {
+        $permissions = Permission::orderBy('name', 'desc')->get();
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $role->id)
+            ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+            ->all();
+        return view('userRole.show', compact('role', 'permissions', 'rolePermissions'));
+    }
+
+    /**
      * Receive the form information and creates the item
      * @param $request
      * @method POST
@@ -90,7 +104,7 @@ class UserRoleController extends Controller
      * Receive the form information and updates the item
      * @param $request
      * @param Role $role
-     * @method POST
+     * @method PATCH
      */
     public function update (Request $request, Role $role)
     {
@@ -108,5 +122,18 @@ class UserRoleController extends Controller
         return redirect()
             ->route('userRole.edit', compact('role'))
             ->with('success', trans('messages.roleUpdated'));
+    }
+
+    /**
+     * Delete the item
+     * @param Role $role
+     * @method PATCH
+     */
+    public function destroy(Role $role)
+    {
+        $role->delete();
+        return redirect()
+            ->route('userRole.index')
+            ->with('success', trans('messages.roleDeleted'));
     }
 }
