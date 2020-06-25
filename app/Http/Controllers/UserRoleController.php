@@ -136,4 +136,22 @@ class UserRoleController extends Controller
             ->route('userRole.index')
             ->with('success', trans('messages.roleDeleted'));
     }
+
+    /**
+     * Change the status of the item
+     * @param Role $role
+     * @method POST
+     */
+    public function changeStatus(Role $role)
+    {
+        $status = ($role->status == 1) ? 0 : 1;
+
+        $role->update([
+            'status' => $status
+        ]);
+
+        return redirect()
+            ->route('userRole.index')
+            ->with('success', trans('messages.roleUpdated'));
+    }
 }

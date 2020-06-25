@@ -36,5 +36,7 @@ return [
     'roleDeleted' => 'User Role deleted successfully',
     'back' => 'Back',
     'deleteItem' => "Do you want to delete this item?",
-    'yes' => "Yes"
+    'yes' => "Yes",
+    'disableItem' => "Do you want to disable this item?",
+    'enableItem' => "Do you want to enable this item?",
 ];

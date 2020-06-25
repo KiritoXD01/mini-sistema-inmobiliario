@@ -36,5 +36,7 @@ return [
     'roleDeleted' => 'Rol de usuario eliminado exitosamente',
     'back' => 'Volver',
     'deleteItem' => "Desea eliminar este elemento?",
-    'yes' => "Si"
+    'yes' => "Si",
+    'disableItem' => "Desea desactivar este elemento?",
+    'enableItem' => "Desea activar este elemento?",
 ];

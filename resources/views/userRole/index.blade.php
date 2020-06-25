@@ -66,13 +66,15 @@
                                             @can('user-role-status')
                                                 <form action="{{ route('userRole.changeStatus', $userRole->id) }}" method="post" id="formChangeStatus-{{ $userRole->id }}">
                                                     @csrf
-                                                    <button type="submit" class="dropdown-item">
-                                                        @if($userRole->status)
+                                                    @if($userRole->status)
+                                                        <button type="submit" class="dropdown-item" onclick="disableItem({{ $userRole->id }})">
                                                             <i class="fa fa-square fa-fw"></i> @lang('messages.disable')
-                                                        @else
+                                                        </button>
+                                                    @else
+                                                        <button type="submit" class="dropdown-item" onclick="enableItem({{ $userRole->id }})">
                                                             <i class="fa fa-square fa-fw"></i> @lang('messages.enable')
-                                                        @endif
-                                                    </button>
+                                                        </button>
+                                                    @endif
                                                 </form>
                                             @endcan
                                             <div class="dropdown-divider"></div>
@@ -123,6 +125,62 @@
                             onOpen: () => {
                                 Swal.showLoading();
                                 document.getElementById(`formDelete-${id}`).submit();
+                            }
+                        });
+                    }
+                });
+        }
+
+        function disableItem(id) {
+            Swal
+                .fire({
+                    title: "@lang('messages.disableItem')",
+                    icon: 'question',
+                    showCancelButton: true,
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    confirmButtonText: "@lang('messages.yes')",
+                    cancelButtonText: "No",
+                    reverseButtons: true
+                })
+                .then((result) => {
+                    if (result.value) {
+                        Swal.fire({
+                            title: "@lang('messages.pleaseWait')",
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            onOpen: () => {
+                                Swal.showLoading();
+                                document.getElementById(`formChangeStatus-${id}`).submit();
+                            }
+                        });
+                    }
+                });
+        }
+
+        function enableItem(id) {
+            Swal
+                .fire({
+                    title: "@lang('messages.enableItem')",
+                    icon: 'question',
+                    showCancelButton: true,
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    confirmButtonText: "@lang('messages.yes')",
+                    cancelButtonText: "No",
+                    reverseButtons: true
+                })
+                .then((result) => {
+                    if (result.value) {
+                        Swal.fire({
+                            title: "@lang('messages.pleaseWait')",
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            onOpen: () => {
+                                Swal.showLoading();
+                                document.getElementById(`formChangeStatus-${id}`).submit();
                             }
                         });
                     }
