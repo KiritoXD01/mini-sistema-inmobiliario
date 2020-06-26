@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('phonenumber', 30)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 100);
-            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->string('code', 8);
             $table->boolean('status')->default(true);
             $table->rememberToken();

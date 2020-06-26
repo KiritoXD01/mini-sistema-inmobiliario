@@ -26,6 +26,12 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 @if($role->id > 3)
+                                    @can('user-role-edit')
+                                        <a class="dropdown-item" href="{{ route('userRole.edit', $role->id) }}">
+                                            <i class="fa fa-edit fa-fw"></i> @lang('messages.edit')
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                    @endcan
                                     @can('user-role-status')
                                         <form action="{{ route('userRole.changeStatus', $role->id) }}" method="post" id="formChangeStatus">
                                             @csrf

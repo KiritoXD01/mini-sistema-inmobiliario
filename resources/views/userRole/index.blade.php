@@ -44,7 +44,7 @@
                                     <span class="badge badge-danger">@lang('messages.disabled')</span>
                                 @endif
                             </td>
-                            <td>
+                            <td style="width: 10%;">
                                 <div class="dropdown">
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                         @lang('messages.actions')
@@ -67,11 +67,11 @@
                                                 <form action="{{ route('userRole.changeStatus', $userRole->id) }}" method="post" id="formChangeStatus-{{ $userRole->id }}">
                                                     @csrf
                                                     @if($userRole->status)
-                                                        <button type="submit" class="dropdown-item" onclick="disableItem({{ $userRole->id }})">
+                                                        <button type="button" class="dropdown-item" onclick="disableItem({{ $userRole->id }})">
                                                             <i class="fa fa-square fa-fw"></i> @lang('messages.disable')
                                                         </button>
                                                     @else
-                                                        <button type="submit" class="dropdown-item" onclick="enableItem({{ $userRole->id }})">
+                                                        <button type="button" class="dropdown-item" onclick="enableItem({{ $userRole->id }})">
                                                             <i class="fa fa-square fa-fw"></i> @lang('messages.enable')
                                                         </button>
                                                     @endif

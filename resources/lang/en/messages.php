@@ -43,4 +43,12 @@ return [
     'export' => 'Export',
     'password' => 'Password',
     'confirmPassword' => 'Confirm Password',
+    'phoneNumber' => "Phone Number",
+    'change' => "Change",
+    'update' => "Update",
+    'created_by' => "Created By",
+    'userCreated' => 'User created successfully',
+    'userUpdated' => 'User updated successfully',
+    'userDeleted' => 'User deleted successfully',
+    'code' => 'Code'
 ];

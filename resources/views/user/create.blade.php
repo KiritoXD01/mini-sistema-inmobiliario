@@ -39,13 +39,19 @@
                 @endif
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="name">@lang('messages.name')</label>
-                            <input type="text" id="name" name="name" required autofocus class="form-control" value="{{ old('name') }}" placeholder="@lang('messages.name')...">
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label for="firstname">@lang('messages.firstname')</label>
+                                <input type="text" id="firstname" name="firstname" required autofocus maxlength="255" class="form-control" value="{{ old('firstname') }}" placeholder="@lang('messages.firstname')...">
+                            </div>
+                            <div class="col-6">
+                                <label for="lastname">@lang('messages.lastname')</label>
+                                <input type="text" id="lastname" name="lastname" required autofocus maxlength="255" class="form-control" value="{{ old('lastname') }}" placeholder="@lang('messages.lastname')...">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required class="form-control" value="{{ old('email') }}" placeholder="Email...">
+                            <input type="email" id="email" name="email" required maxlength="255" class="form-control" value="{{ old('email') }}" placeholder="Email...">
                         </div>
                         <div class="form-group">
                             <label for="role">@lang('messages.userRole')</label>
@@ -66,12 +72,16 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label for="phonenumber">@lang('messages.phoneNumber')</label>
+                            <input type="tel" id="phonenumber" name="phonenumber" class="form-control" value="{{ old('phonenumber') }}" maxlength="30" placeholder="@lang('messages.phoneNumber')...">
+                        </div>
+                        <div class="form-group">
                             <label for="password">@lang('messages.password')</label>
-                            <input type="password" id="password" name="password" class="form-control" required value="" placeholder="@lang('messages.password')...">
+                            <input type="password" id="password" name="password" class="form-control" required value="" minlength="8" maxlength="100" placeholder="@lang('messages.password')...">
                         </div>
                         <div class="form-group">
                             <label for="password_confirmation">@lang('messages.confirmPassword')</label>
-                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required value="" placeholder="@lang('messages.confirmPassword')...">
+                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" minlength="8" maxlength="100" required value="" placeholder="@lang('messages.confirmPassword')...">
                         </div>
                     </div>
                 </div>

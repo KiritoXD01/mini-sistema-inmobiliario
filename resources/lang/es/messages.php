@@ -1,6 +1,6 @@
 <?php
 
-return [
+return array(
     'welcome' => 'Bienvenid@',
     'login' => 'Iniciar sesión',
     'pleaseEnterEmail' => "Por favor, Introduzca su Email",
@@ -43,4 +43,12 @@ return [
     'export' => 'Exportar',
     'password' => 'Contraseña',
     'confirmPassword' => 'Confirmar Contraseña',
-];
+    'phoneNumber' => "Numero de teléfono",
+    'change' => "Cambiar",
+    'update' => "Actualizar",
+    'created_by' => "Creado Por",
+    'userCreated' => 'Usuario creado exitosamente',
+    'userUpdated' => 'Usuario actualizado exitosamente',
+    'userDeleted' => 'Usuario eliminado exitosamente',
+    'code' => 'Código'
+);

@@ -58,36 +58,52 @@
                             @endif
                         </td>
                         <td>{{ $user->roles->first()->name }}</td>
-                        <td>
-                            <form action="{{ route('user.destroy', $user->id) }}" method="post" id="formDelete{{ $user->id }}">
-                                @method("DELETE")
-                                @csrf
-                                <div class="btn-group" role="group">
+                        <td style="width: 10%;">
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    @lang('messages.actions')
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
                                     @can('user-show')
-                                        <a href="{{ route('user.show', $user->id) }}" class="btn btn-primary">
+                                        <a class="dropdown-item" href="{{ route('user.show', $user->id) }}">
                                             <i class="fa fa-eye fa-fw"></i> @lang('messages.show')
                                         </a>
                                     @endcan
+                                    <div class="dropdown-divider"></div>
                                     @can('user-edit')
-                                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info">
+                                        <a class="dropdown-item" href="{{ route('user.edit', $user->id) }}">
                                             <i class="fa fa-edit fa-fw"></i> @lang('messages.edit')
                                         </a>
                                     @endcan
-                                    @can('user-delete')
-                                        @if($user->status)
-                                            <input type="hidden" name="status" value="0">
-                                            <button type="button" class="btn btn-danger" onclick="deleteItem({{ $user->id }}, {{ $user->status }})" @if($user->id == auth()->user()->id) disabled @endif>
-                                                <i class="fa fa-square fa-fw"></i> @lang('messages.disable')
-                                            </button>
-                                        @else
-                                            <input type="hidden" name="status" value="1">
-                                            <button type="button" class="btn btn-primary" onclick="deleteItem({{ $user->id }}, {{ $user->status }})" @if($user->id == auth()->user()->id) disabled @endif>
-                                                <i class="fa fa-check-square fa-fw"></i> @lang('messages.enable')
-                                            </button>
-                                        @endif
-                                    @endcan
+                                    @if (auth()->user()->id != $user->id)
+                                        <div class="dropdown-divider"></div>
+                                        @can('user-status')
+                                            <form action="{{ route('user.changeStatus', $user->id) }}" method="post" id="formChangeStatus-{{ $user->id }}">
+                                                @csrf
+                                                @if($user->status)
+                                                    <button type="button" class="dropdown-item" onclick="disableItem({{ $user->id }})">
+                                                        <i class="fa fa-square fa-fw"></i> @lang('messages.disable')
+                                                    </button>
+                                                @else
+                                                    <button type="button" class="dropdown-item" onclick="enableItem({{ $user->id }})">
+                                                        <i class="fa fa-square fa-fw"></i> @lang('messages.enable')
+                                                    </button>
+                                                @endif
+                                            </form>
+                                        @endcan
+                                        <div class="dropdown-divider"></div>
+                                        @can('user-delete')
+                                            <form action="{{ route('user.destroy', $user->id) }}" method="post" id="formDelete-{{ $user->id }}">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="button" class="dropdown-item" onclick="deleteItem({{ $user->id }})">
+                                                    <i class="fa fa-trash fa-fw"></i> @lang('messages.delete')
+                                                </button>
+                                            </form>
+                                        @endcan
+                                    @endif
                                 </div>
-                            </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
@@ -101,6 +117,90 @@
 
 @section('javascript')
     <script>
+        function deleteItem(id) {
+            Swal
+                .fire({
+                    title: "@lang('messages.deleteItem')",
+                    icon: 'question',
+                    showCancelButton: true,
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    confirmButtonText: "@lang('messages.yes')",
+                    cancelButtonText: "No",
+                    reverseButtons: true
+                })
+                .then((result) => {
+                    if (result.value) {
+                        Swal.fire({
+                            title: "@lang('messages.pleaseWait')",
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            onOpen: () => {
+                                Swal.showLoading();
+                                document.getElementById(`formDelete-${id}`).submit();
+                            }
+                        });
+                    }
+                });
+        }
+
+        function disableItem(id) {
+            Swal
+                .fire({
+                    title: "@lang('messages.disableItem')",
+                    icon: 'question',
+                    showCancelButton: true,
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    confirmButtonText: "@lang('messages.yes')",
+                    cancelButtonText: "No",
+                    reverseButtons: true
+                })
+                .then((result) => {
+                    if (result.value) {
+                        Swal.fire({
+                            title: "@lang('messages.pleaseWait')",
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            onOpen: () => {
+                                Swal.showLoading();
+                                document.getElementById(`formChangeStatus-${id}`).submit();
+                            }
+                        });
+                    }
+                });
+        }
+
+        function enableItem(id) {
+            Swal
+                .fire({
+                    title: "@lang('messages.enableItem')",
+                    icon: 'question',
+                    showCancelButton: true,
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    confirmButtonText: "@lang('messages.yes')",
+                    cancelButtonText: "No",
+                    reverseButtons: true
+                })
+                .then((result) => {
+                    if (result.value) {
+                        Swal.fire({
+                            title: "@lang('messages.pleaseWait')",
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            onOpen: () => {
+                                Swal.showLoading();
+                                document.getElementById(`formChangeStatus-${id}`).submit();
+                            }
+                        });
+                    }
+                });
+        }
+
         $(document).ready(function(){
             $("#datatable").dataTable({
                 "order": [[ 0, "asc" ]]

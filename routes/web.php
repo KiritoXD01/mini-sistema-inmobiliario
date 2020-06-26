@@ -42,6 +42,8 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/', 'UserController@store')->middleware('auth')->name('user.store');
     //POST: Import users from CSV/Excel
     Route::post('/import', 'UserController@import')->middleware('auth')->name('user.import');
+    //POST: Change the user status
+    Route::post('/changeStatus/{user}', 'UserController@changeStatus')->middleware('auth')->name('user.changeStatus');
     //PATCH: Update an existing user
     Route::patch('/{user}', 'UserController@update')->middleware('auth')->name('user.update');
     //DELETE: Deletes and user

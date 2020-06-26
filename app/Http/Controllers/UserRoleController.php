@@ -63,7 +63,7 @@ class UserRoleController extends Controller
     }
 
     /**
-     * Show the edit view with the item information
+     * Display the show view with the item information in readonly mode
      * @param Role $role
      * @method GET
      */
@@ -78,7 +78,7 @@ class UserRoleController extends Controller
 
     /**
      * Receive the form information and creates the item
-     * @param $request
+     * @param Request $request
      * @method POST
      */
     public function store(Request $request)
@@ -127,7 +127,7 @@ class UserRoleController extends Controller
     /**
      * Delete the item
      * @param Role $role
-     * @method PATCH
+     * @method DELETE
      */
     public function destroy(Role $role)
     {
@@ -144,10 +144,9 @@ class UserRoleController extends Controller
      */
     public function changeStatus(Role $role)
     {
-        $status = ($role->status == 1) ? 0 : 1;
-
+        $role::find($role->id);
         $role->update([
-            'status' => $status
+            'status' => ($role->status) ? 0 : 1
         ]);
 
         return redirect()
