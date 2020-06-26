@@ -31,7 +31,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('user.index', compact('users'));
+        $roles = Role::where('status', true)->pluck('name')->all();
+        return view('user.index', compact('users', 'roles'));
     }
 
     /**
@@ -148,5 +149,43 @@ class UserController extends Controller
         return redirect()
             ->route('user.index')
             ->with('success', trans('messages.userUpdated'));
+    }
+
+    /**
+     * Verifies that the email provides upon import is unique and valid
+     * @param Request $request
+     * @method GET
+     */
+    public function checkEmail(Request $request)
+    {
+        $emailExists = User::where('email', strtolower($request->email))->exists();
+        return response()->json(['email' => $emailExists]);
+    }
+
+    /**
+     * import users from modal form
+     * @param Request $request
+     * @method POST
+     */
+    public function import(Request $request)
+    {
+        for ($i = 0; $i < count($request->email); $i++)
+        {
+            $user = User::create([
+                'firstname'   => $request->firstname[$i],
+                'lastname'    => $request->lastname[$i],
+                'email'       => strtolower($request->email[$i]),
+                'phonenumber' => (!empty($request->phonenumber[$i]) && isset($request->phonenumber[$i])) ? $request->phonenumber[$i] : "",
+                'created_by'  => auth()->user()->id,
+                'password'    => bcrypt($request->password[$i]),
+                'code'        => Str::random(8)
+            ]);
+
+            $user->assignRole($request->role[$i]);
+        }
+
+        return redirect()
+            ->route('user.index')
+            ->with('success', trans('messages.userImported'));
     }
 }

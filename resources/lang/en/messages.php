@@ -50,5 +50,7 @@ return [
     'userCreated' => 'User created successfully',
     'userUpdated' => 'User updated successfully',
     'userDeleted' => 'User deleted successfully',
-    'code' => 'Code'
+    'code' => 'Code',
+    'add' => "Add",
+    'userImported' => 'Users imported successfully',
 ];

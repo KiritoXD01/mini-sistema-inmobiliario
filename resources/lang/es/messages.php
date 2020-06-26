@@ -50,5 +50,7 @@ return array(
     'userCreated' => 'Usuario creado exitosamente',
     'userUpdated' => 'Usuario actualizado exitosamente',
     'userDeleted' => 'Usuario eliminado exitosamente',
-    'code' => 'Código'
+    'code' => 'Código',
+    'add' => "Agregar",
+    'userImported' => 'Usuarios importados exitosamente',
 );
