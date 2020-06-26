@@ -95,6 +95,33 @@ class PermissionSeeder extends Seeder
                 'description' => "Eliminar Pais"
             ],
             // End Country Permission /////////////////////
+
+            // City Permission //////////////////////////
+            [
+                'name'        => "city-list",
+                'description' => "Listar Ciudades"
+            ],
+            [
+                'name'        => "city-create",
+                'description' => "Crear Ciudad"
+            ],
+            [
+                'name'        => "city-show",
+                'description' => "Mostrar Ciudad"
+            ],
+            [
+                'name'        => "city-edit",
+                'description' => "Editar Ciudad"
+            ],
+            [
+                'name'        => "city-status",
+                'description' => "Cambiar estado de Ciudad"
+            ],
+            [
+                'name'        => "city-delete",
+                'description' => "Eliminar Ciudad"
+            ],
+            // End City Permission //////////////////////////
         ];
 
         // Take all the permission and loop over them

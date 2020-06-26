@@ -59,4 +59,10 @@ return array(
     'countryUpdated' => 'Pais actualizado exitosamente',
     'countryDeleted' => 'Pais eliminado exitosamente',
     'countryImported' => 'Paises importados exitosamente',
+    'cities' => "Ciudades",
+    'city' => "Ciudad",
+    'cityCreated' => 'Ciudad creada exitosamente',
+    'cityUpdated' => 'Ciudad actualizada exitosamente',
+    'cityDeleted' => 'Ciudad eliminada exitosamente',
+    'cityImported' => 'Ciudades importadas exitosamente',
 );

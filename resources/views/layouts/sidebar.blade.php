@@ -42,4 +42,14 @@
             </a>
         </li>
     @endcan
+
+    @can('city-list')
+    <!-- Nav Item - Roles -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('city.index') }}">
+                <i class="fas fa-fw fa-flag"></i>
+                <span>@lang('messages.cities')</span>
+            </a>
+        </li>
+    @endcan
 </ul>

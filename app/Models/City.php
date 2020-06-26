@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class City extends Model
 {
     /**
      * The table that relates to this model
      */
-    protected $table = "countries";
+    protected $table = "cities";
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +17,7 @@ class Country extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'iso', 'status', 'created_by'
+        'name', 'country_id', 'status', 'created_by'
     ];
 
     /**
@@ -41,10 +41,12 @@ class Country extends Model
     }
 
     /**
-     * Relation between the country and its cities
+     * Relation between cities and its country
      */
-    public function cities()
+    public function country()
     {
-        return $this->hasMany('App\Models\City', 'country_id', 'id');
+        return $this->belongsTo('App\Models\Country', 'country_id', 'id')->withDefault([
+            'name' => 'Undefined'
+        ]);
     }
 }

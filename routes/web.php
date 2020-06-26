@@ -95,3 +95,28 @@ Route::group(['prefix' => 'country'], function(){
     //DELETE: Deletes and user
     Route::delete('/{country}', 'CountryController@destroy')->middleware('auth')->name('country.destroy');
 });
+
+Route::group(['prefix' => 'city'], function(){
+    //GET: Get all users
+    Route::get('/', 'CityController@index')->middleware('auth')->name('city.index');
+    //GET: Create a new user view
+    Route::get('/create', 'CityController@create')->middleware('auth')->name('city.create');
+    //GET: Edit an user view
+    Route::get('/{city}/edit', 'CityController@edit')->middleware('auth')->name('city.edit');
+    //GET: Show an user view
+    Route::get('/{city}/show', 'CityController@show')->middleware('auth')->name('city.show');
+    //GET: Import users to Excel
+    Route::get('/export', 'CityController@export')->middleware('auth')->name('city.export');
+    //GET: Check if email exists
+    Route::get('/checkName', 'CityController@checkName')->middleware('auth')->name('city.checkName');
+    //POST: Create a new user
+    Route::post('/', 'CityController@store')->middleware('auth')->name('city.store');
+    //POST: Import users from CSV/Excel
+    Route::post('/import', 'CityController@import')->middleware('auth')->name('city.import');
+    //POST: Change the user status
+    Route::post('/changeStatus/{city}', 'CityController@changeStatus')->middleware('auth')->name('city.changeStatus');
+    //PATCH: Update an existing user
+    Route::patch('/{city}', 'CityController@update')->middleware('auth')->name('city.update');
+    //DELETE: Deletes and user
+    Route::delete('/{city}', 'CityController@destroy')->middleware('auth')->name('city.destroy');
+});
