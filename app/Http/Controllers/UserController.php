@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UserExport;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -187,5 +189,14 @@ class UserController extends Controller
         return redirect()
             ->route('user.index')
             ->with('success', trans('messages.userImported'));
+    }
+
+    /**
+     * export users to excel file
+     * @method GET
+     */
+    public function export()
+    {
+        return Excel::download(new UserExport, 'users.xlsx');
     }
 }
