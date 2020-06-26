@@ -53,4 +53,6 @@ return [
     'code' => 'Code',
     'add' => "Add",
     'userImported' => 'Users imported successfully',
+    'countries' => 'Countries',
+    'country' => 'Country',
 ];

@@ -70,7 +70,7 @@
                             </select>
                         </div>
                         @if(auth()->user()->id != $user->id)
-                            @can('user-delete')
+                            @can('user-status')
                                 <div class="form-group">
                                     <div class="custom-control custom-switch">
                                         <input type="hidden" name="status" value="0">

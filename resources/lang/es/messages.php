@@ -53,4 +53,6 @@ return array(
     'code' => 'Código',
     'add' => "Agregar",
     'userImported' => 'Usuarios importados exitosamente',
+    'countries' => 'Paises',
+    'country' => 'Pais',
 );

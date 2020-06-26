@@ -68,3 +68,28 @@ Route::group(['prefix' => 'userRole'], function() {
     //DELETE: Deletes and role
     Route::delete('/{role}', 'UserRoleController@destroy')->middleware('auth')->name('userRole.destroy');
 });
+
+Route::group(['prefix' => 'country'], function(){
+    //GET: Get all users
+    Route::get('/', 'CountryController@index')->middleware('auth')->name('country.index');
+    //GET: Create a new user view
+    Route::get('/create', 'CountryController@create')->middleware('auth')->name('country.create');
+    //GET: Edit an user view
+    Route::get('/{country}/edit', 'CountryController@edit')->middleware('auth')->name('country.edit');
+    //GET: Show an user view
+    Route::get('/{country}/show', 'CountryController@show')->middleware('auth')->name('country.show');
+    //GET: Import users to Excel
+    Route::get('/export', 'CountryController@export')->middleware('auth')->name('country.export');
+    //GET: Check if email exists
+    Route::get('/checkEmail', 'CountryController@checkEmail')->middleware('auth')->name('country.checkEmail');
+    //POST: Create a new user
+    Route::post('/', 'CountryController@store')->middleware('auth')->name('country.store');
+    //POST: Import users from CSV/Excel
+    Route::post('/import', 'CountryController@import')->middleware('auth')->name('country.import');
+    //POST: Change the user status
+    Route::post('/changeStatus/{country}', 'CountryController@changeStatus')->middleware('auth')->name('country.changeStatus');
+    //PATCH: Update an existing user
+    Route::patch('/{country}', 'CountryController@update')->middleware('auth')->name('country.update');
+    //DELETE: Deletes and user
+    Route::delete('/{country}', 'CountryController@destroy')->middleware('auth')->name('country.destroy');
+});
