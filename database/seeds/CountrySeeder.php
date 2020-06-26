@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class CountrySeeder extends Seeder
 {
@@ -253,6 +254,11 @@ class CountrySeeder extends Seeder
             ['iso' => 'DJ', 'name' => 'Yibuti'],
             ['iso' => 'ZM', 'name' => 'Zambia'],
             ['iso' => 'ZW', 'name' => 'Zimbabue']
+        ]);
+
+        DB::table('countries')->update([
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
     }
 }

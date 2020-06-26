@@ -263,12 +263,12 @@
                     <tr id="item-${id}">
                         <td>
                             <div class="form-group">
-                                <input type="text" name="name[]" value="" maxlength="255" class="form-control" placeholder="@lang('messages.name')..." required />
+                                <input type="text" name="name[]" value="" maxlength="255" class="form-control" placeholder="@lang('messages.name')..." required onfocusout="checkName(this);" />
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <input type="text" name="iso[]" value="" maxlength="3" class="form-control" placeholder="ISO..." required />
+                                <input type="text" name="iso[]" value="" maxlength="3" class="form-control" placeholder="ISO..." required onfocusout="checkISO(this);" />
                             </div>
                         </td>
                         <td style="width: 5%;">
@@ -300,6 +300,44 @@
         {
             $("#listItemsToAdd").html("");
             $("#ModalImport").modal("hide");
+        }
+
+        function checkName(element)
+        {
+            if (element.checkValidity())
+            {
+                $.get("{{ route('country.checkName') }}", {
+                        name: element.value
+                    },
+                    function(result)
+                    {
+                        if (result.name) {
+                            element.classList.add("is-invalid");
+                        }
+                        else {
+                            element.classList.remove("is-invalid");
+                        }
+                    });
+            }
+        }
+
+        function checkISO(element)
+        {
+            if (element.checkValidity())
+            {
+                $.get("{{ route('country.checkISO') }}", {
+                        iso: element.value
+                    },
+                    function(result)
+                    {
+                        if (result.iso) {
+                            element.classList.add("is-invalid");
+                        }
+                        else {
+                            element.classList.remove("is-invalid");
+                        }
+                    });
+            }
         }
 
         $(document).ready(function(){

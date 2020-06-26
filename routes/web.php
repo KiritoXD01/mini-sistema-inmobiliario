@@ -81,7 +81,9 @@ Route::group(['prefix' => 'country'], function(){
     //GET: Import users to Excel
     Route::get('/export', 'CountryController@export')->middleware('auth')->name('country.export');
     //GET: Check if email exists
-    Route::get('/checkEmail', 'CountryController@checkEmail')->middleware('auth')->name('country.checkEmail');
+    Route::get('/checkName', 'CountryController@checkName')->middleware('auth')->name('country.checkName');
+    //GET: Check if iso exists
+    Route::get('/checkISO', 'CountryController@checkISO')->middleware('auth')->name('country.checkISO');
     //POST: Create a new user
     Route::post('/', 'CountryController@store')->middleware('auth')->name('country.store');
     //POST: Import users from CSV/Excel

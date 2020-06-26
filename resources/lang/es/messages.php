@@ -55,4 +55,8 @@ return array(
     'userImported' => 'Usuarios importados exitosamente',
     'countries' => 'Paises',
     'country' => 'Pais',
+    'countryCreated' => 'Pais creado exitosamente',
+    'countryUpdated' => 'Pais actualizado exitosamente',
+    'countryDeleted' => 'Pais eliminado exitosamente',
+    'countryImported' => 'Paises importados exitosamente',
 );

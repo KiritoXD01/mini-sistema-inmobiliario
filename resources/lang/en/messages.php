@@ -55,4 +55,8 @@ return [
     'userImported' => 'Users imported successfully',
     'countries' => 'Countries',
     'country' => 'Country',
+    'countryCreated' => 'Pais created successfully',
+    'countryUpdated' => 'Pais updated successfully',
+    'countryDeleted' => 'Pais deleted successfully',
+    'countryImported' => 'Countries imported successfully',
 ];
