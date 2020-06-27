@@ -70,4 +70,8 @@ return [
     'propertyTypeCreated' => 'Tipo de Propiedad creado exitosamente',
     'propertyTypeUpdated' => 'Tipo de Propiedad actualizado exitosamente',
     'propertyTypeDeleted' => 'Tipo de Propiedad eliminado exitosamente',
+    'propertyStatus' => "Estado de Propiedad",
+    'propertyStatusCreated' => 'Estado de Propiedad creado exitosamente',
+    'propertyStatusUpdated' => 'Estado de Propiedad actualizado exitosamente',
+    'propertyStatusDeleted' => 'Estado de Propiedad actualizado exitosamente',
 ];

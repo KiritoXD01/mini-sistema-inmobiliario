@@ -62,4 +62,14 @@
             </a>
         </li>
     @endcan
+
+    @can('property-status-list')
+    <!-- Nav Item - Roles -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('propertyStatus.index') }}">
+                <i class="fas fa-fw fa-home"></i>
+                <span>@lang('messages.propertyStatus')</span>
+            </a>
+        </li>
+    @endcan
 </ul>

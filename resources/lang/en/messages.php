@@ -70,4 +70,8 @@ return [
     'propertyTypeCreated' => 'Property Type created successfully',
     'propertyTypeUpdated' => 'Property Type updated successfully',
     'propertyTypeDeleted' => 'Property Type deleted successfully',
+    'propertyStatus' => "Property Status",
+    'propertyStatusCreated' => 'Property Status created successfully',
+    'propertyStatusUpdated' => 'Property Status updated successfully',
+    'propertyStatusDeleted' => 'Property Status deleted successfully',
 ];

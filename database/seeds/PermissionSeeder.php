@@ -149,6 +149,33 @@ class PermissionSeeder extends Seeder
                 'description' => "Eliminar Tipo de Propiedad"
             ],
             //</editor-fold>
+
+            //<editor-fold desc="Property Status Permission">
+            [
+                'name'        => "property-status-list",
+                'description' => "Listar Estatus de Propiedades"
+            ],
+            [
+                'name'        => "property-status-create",
+                'description' => "Crear Estatus de Propiedad"
+            ],
+            [
+                'name'        => "property-status-show",
+                'description' => "Mostrar Estatus de Propiedad"
+            ],
+            [
+                'name'        => "property-status-edit",
+                'description' => "Editar Estatus de Propiedad"
+            ],
+            [
+                'name'        => "property-status-status",
+                'description' => "Cambiar Estatus de Propiedad"
+            ],
+            [
+                'name'        => "property-status-delete",
+                'description' => "Eliminar Estatus de Propiedad"
+            ],
+            //</editor-fold>
         ];
 
         // Take all the permission and loop over them

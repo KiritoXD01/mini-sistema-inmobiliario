@@ -139,3 +139,22 @@ Route::group(['prefix' => 'propertyType'], function(){
     //DELETE: Deletes and user
     Route::delete('/{propertyType}', 'PropertyTypeController@destroy')->middleware('auth')->name('propertyType.destroy');
 });
+
+Route::group(['prefix' => 'propertyStatus'], function(){
+    //GET: Get all users
+    Route::get('/', 'PropertyStatusController@index')->middleware('auth')->name('propertyStatus.index');
+    //GET: Create a new user view
+    Route::get('/create', 'PropertyStatusController@create')->middleware('auth')->name('propertyStatus.create');
+    //GET: Edit an user view
+    Route::get('/{propertyStatus}/edit', 'PropertyStatusController@edit')->middleware('auth')->name('propertyStatus.edit');
+    //GET: Show an user view
+    Route::get('/{propertyStatus}/show', 'PropertyStatusController@show')->middleware('auth')->name('propertyStatus.show');
+    //POST: Create a new user
+    Route::post('/', 'PropertyStatusController@store')->middleware('auth')->name('propertyStatus.store');
+    //POST: Change the user status
+    Route::post('/changeStatus/{propertyStatus}', 'PropertyStatusController@changeStatus')->middleware('auth')->name('propertyStatus.changeStatus');
+    //PATCH: Update an existing user
+    Route::patch('/{propertyStatus}', 'PropertyStatusController@update')->middleware('auth')->name('propertyStatus.update');
+    //DELETE: Deletes and user
+    Route::delete('/{propertyStatus}', 'PropertyStatusController@destroy')->middleware('auth')->name('propertyStatus.destroy');
+});
