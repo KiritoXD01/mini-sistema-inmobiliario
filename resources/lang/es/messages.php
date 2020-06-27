@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'welcome' => 'Bienvenid@',
     'login' => 'Iniciar sesión',
     'pleaseEnterEmail' => "Por favor, Introduzca su Email",
@@ -70,4 +70,4 @@ return array(
     'propertyTypeCreated' => 'Tipo de Propiedad creado exitosamente',
     'propertyTypeUpdated' => 'Tipo de Propiedad actualizado exitosamente',
     'propertyTypeDeleted' => 'Tipo de Propiedad eliminado exitosamente',
-);
+];

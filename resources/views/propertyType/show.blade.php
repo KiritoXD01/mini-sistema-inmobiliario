@@ -100,3 +100,91 @@
         </div>
     </div>
 @endsection
+
+@section('javascript')
+    <script>
+        function deleteItem(id) {
+            Swal
+                .fire({
+                    title: "@lang('messages.deleteItem')",
+                    icon: 'question',
+                    showCancelButton: true,
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    confirmButtonText: "@lang('messages.yes')",
+                    cancelButtonText: "No",
+                    reverseButtons: true
+                })
+                .then((result) => {
+                    if (result.value) {
+                        Swal.fire({
+                            title: "@lang('messages.pleaseWait')",
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            onOpen: () => {
+                                Swal.showLoading();
+                                document.getElementById(`formDelete-${id}`).submit();
+                            }
+                        });
+                    }
+                });
+        }
+
+        function disableItem(id) {
+            Swal
+                .fire({
+                    title: "@lang('messages.disableItem')",
+                    icon: 'question',
+                    showCancelButton: true,
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    confirmButtonText: "@lang('messages.yes')",
+                    cancelButtonText: "No",
+                    reverseButtons: true
+                })
+                .then((result) => {
+                    if (result.value) {
+                        Swal.fire({
+                            title: "@lang('messages.pleaseWait')",
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            onOpen: () => {
+                                Swal.showLoading();
+                                document.getElementById(`formChangeStatus-${id}`).submit();
+                            }
+                        });
+                    }
+                });
+        }
+
+        function enableItem(id) {
+            Swal
+                .fire({
+                    title: "@lang('messages.enableItem')",
+                    icon: 'question',
+                    showCancelButton: true,
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    confirmButtonText: "@lang('messages.yes')",
+                    cancelButtonText: "No",
+                    reverseButtons: true
+                })
+                .then((result) => {
+                    if (result.value) {
+                        Swal.fire({
+                            title: "@lang('messages.pleaseWait')",
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            onOpen: () => {
+                                Swal.showLoading();
+                                document.getElementById(`formChangeStatus-${id}`).submit();
+                            }
+                        });
+                    }
+                });
+        }
+    </script>
+@endsection

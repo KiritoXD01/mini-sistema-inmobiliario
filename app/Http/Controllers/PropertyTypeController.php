@@ -101,4 +101,34 @@ class PropertyTypeController extends Controller
             ->route('propertyType.edit', compact('propertyType'))
             ->with('success', trans('messages.propertyTypeUpdated'));
     }
+
+    /**
+     * Delete the item
+     * @param PropertyType $propertyType
+     * @method DELETE
+     */
+    public function destroy(PropertyType $propertyType)
+    {
+        $propertyType->delete();
+        return redirect()
+            ->route('propertyType.index')
+            ->with('success', trans('messages.propertyTypeDeleted'));
+    }
+
+    /**
+     * Change the status of the item
+     * @param PropertyType $propertyType
+     * @method POST
+     */
+    public function changeStatus(PropertyType $propertyType)
+    {
+        $propertyType = PropertyType::find($propertyType->id);
+        $propertyType->update([
+            'status' => ($propertyType->status) ? 0 : 1
+        ]);
+
+        return redirect()
+            ->route('propertyType.index', compact('propertyType'))
+            ->with('success', trans('messages.propertyTypeUpdated'));
+    }
 }
