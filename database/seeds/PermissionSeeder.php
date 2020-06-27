@@ -176,6 +176,33 @@ class PermissionSeeder extends Seeder
                 'description' => "Eliminar Estatus de Propiedad"
             ],
             //</editor-fold>
+
+            //<editor-fold desc="Property Legal Conditions">
+            [
+                'name'        => "property-legal-list",
+                'description' => "Listar Condiciones Legales de Propiedades"
+            ],
+            [
+                'name'        => "property-legal-create",
+                'description' => "Crear Condicion Legal de Propiedad"
+            ],
+            [
+                'name'        => "property-legal-show",
+                'description' => "Mostrar Condicion Legal de Propiedad"
+            ],
+            [
+                'name'        => "property-legal-edit",
+                'description' => "Editar Condicion Legal de Propiedad"
+            ],
+            [
+                'name'        => "property-legal-status",
+                'description' => "Cambiar ECondicion Legal de Propiedad"
+            ],
+            [
+                'name'        => "property-legal-delete",
+                'description' => "Eliminar Condicion Legal de Propiedad"
+            ],
+            //</editor-fold>
         ];
 
         // Take all the permission and loop over them

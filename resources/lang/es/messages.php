@@ -73,5 +73,10 @@ return [
     'propertyStatus' => "Estado de Propiedad",
     'propertyStatusCreated' => 'Estado de Propiedad creado exitosamente',
     'propertyStatusUpdated' => 'Estado de Propiedad actualizado exitosamente',
-    'propertyStatusDeleted' => 'Estado de Propiedad actualizado exitosamente',
+    'propertyStatusDeleted' => 'Estado de Propiedad eliminado exitosamente',
+    'propertyLegalConditions' => "Condiciones Legales de Propiedades",
+    'propertyLegalCondition' => "Condición Legal de Propiedad",
+    'propertyLegalConditionCreated' => 'Condición Legal creado exitosamente',
+    'propertyLegalConditionUpdated' => 'Condición Legal actualizado exitosamente',
+    'propertyLegalConditionDeleted' => 'Condición Legal eliminado exitosamente',
 ];

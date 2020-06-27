@@ -74,4 +74,9 @@ return [
     'propertyStatusCreated' => 'Property Status created successfully',
     'propertyStatusUpdated' => 'Property Status updated successfully',
     'propertyStatusDeleted' => 'Property Status deleted successfully',
+    'propertyLegalConditions' => "Property Legal Conditions",
+    'propertyLegalCondition' => "Property Legal Condition",
+    'propertyLegalConditionCreated' => 'Property Legal Condition created successfully',
+    'propertyLegalConditionUpdated' => 'Property Legal Condition updated successfully',
+    'propertyLegalConditionDeleted' => 'Property Legal Condition deleted successfully',
 ];

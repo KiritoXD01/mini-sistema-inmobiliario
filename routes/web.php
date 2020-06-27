@@ -158,3 +158,22 @@ Route::group(['prefix' => 'propertyStatus'], function(){
     //DELETE: Deletes and user
     Route::delete('/{propertyStatus}', 'PropertyStatusController@destroy')->middleware('auth')->name('propertyStatus.destroy');
 });
+
+Route::group(['prefix' => 'propertyLegalCondition'], function(){
+    //GET: Get all users
+    Route::get('/', 'PropertyLegalConditionController@index')->middleware('auth')->name('propertyLegalCondition.index');
+    //GET: Create a new user view
+    Route::get('/create', 'PropertyLegalConditionController@create')->middleware('auth')->name('propertyLegalCondition.create');
+    //GET: Edit an user view
+    Route::get('/{propertyLegalCondition}/edit', 'PropertyLegalConditionController@edit')->middleware('auth')->name('propertyLegalCondition.edit');
+    //GET: Show an user view
+    Route::get('/{propertyLegalCondition}/show', 'PropertyLegalConditionController@show')->middleware('auth')->name('propertyLegalCondition.show');
+    //POST: Create a new user
+    Route::post('/', 'PropertyLegalConditionController@store')->middleware('auth')->name('propertyStatus.store');
+    //POST: Change the user status
+    Route::post('/propertyLegalCondition/{propertyStatus}', 'PropertyLegalConditionController@changeStatus')->middleware('auth')->name('propertyLegalCondition.changeStatus');
+    //PATCH: Update an existing user
+    Route::patch('/{propertyLegalCondition}', 'PropertyLegalConditionController@update')->middleware('auth')->name('propertyLegalCondition.update');
+    //DELETE: Deletes and user
+    Route::delete('/{propertyLegalCondition}', 'PropertyLegalConditionController@destroy')->middleware('auth')->name('propertyLegalCondition.destroy');
+});
