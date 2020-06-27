@@ -17,7 +17,7 @@
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-6">
-                        <a href="{{ route('propertyType.index') }}" class="btn btn-warning">
+                        <a href="{{ route('propertyStatus.index') }}" class="btn btn-warning">
                             <i class="fa fa-fw fa-arrow-circle-left"></i> @lang('messages.cancel')
                         </a>
                     </div>

@@ -95,7 +95,10 @@ class PropertyTypeController extends Controller
             'name' => ['required', 'string', 'max:255', Rule::unique('property_types')->ignoreModel($propertyType)]
         ])->validate();
 
-        $propertyType->update($request->all());
+        $data = $request->all();
+        $data['name'] = strtoupper($data['name']);
+
+        $propertyType->update($data);
 
         return redirect()
             ->route('propertyType.edit', compact('propertyType'))
