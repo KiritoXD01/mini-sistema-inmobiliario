@@ -7,7 +7,7 @@
         <h1 class="h3 mb-0 text-gray-800">
             <i class="fas fa-fw fa-flag"></i> @lang('messages.cities')
         </h1>
-        @can('user-create')
+        @can('city-create')
             <div class="btn-group">
                 <a href="{{ route('city.create') }}" class="d-none d-sm-inline-block btn btn-primary shadow-sm">
                     <i class="fas fa-plus-circle fa-sm fa-fw text-white-50"></i> @lang('messages.create') @lang('messages.city')

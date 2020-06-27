@@ -52,4 +52,14 @@
             </a>
         </li>
     @endcan
+
+    @can('property-type-list')
+    <!-- Nav Item - Roles -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('propertyType.index') }}">
+                <i class="fas fa-fw fa-home"></i>
+                <span>@lang('messages.propertyTypes')</span>
+            </a>
+        </li>
+    @endcan
 </ul>

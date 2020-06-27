@@ -65,4 +65,9 @@ return array(
     'cityUpdated' => 'Ciudad actualizada exitosamente',
     'cityDeleted' => 'Ciudad eliminada exitosamente',
     'cityImported' => 'Ciudades importadas exitosamente',
+    'propertyTypes' => "Tipos de Propiedades",
+    'propertyType' => "Tipo de Propiedad",
+    'propertyTypeCreated' => 'Tipo de Propiedad creado exitosamente',
+    'propertyTypeUpdated' => 'Tipo de Propiedad actualizado exitosamente',
+    'propertyTypeDeleted' => 'Tipo de Propiedad eliminado exitosamente',
 );

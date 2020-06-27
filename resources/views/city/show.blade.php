@@ -27,12 +27,6 @@
                                 @lang('messages.actions')
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                @can('city-show')
-                                    <a class="dropdown-item" href="{{ route('city.show', $city->id) }}">
-                                        <i class="fa fa-eye fa-fw"></i> @lang('messages.show')
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                @endcan
                                 @can('city-edit')
                                     <a class="dropdown-item" href="{{ route('city.edit', $city->id) }}">
                                         <i class="fa fa-edit fa-fw"></i> @lang('messages.edit')

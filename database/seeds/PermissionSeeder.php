@@ -15,7 +15,7 @@ class PermissionSeeder extends Seeder
     {
         //Permission array list
         $permissions = [
-            // User permissions /////////////////
+            //<editor-fold desc="User Permissions">
             [
                 'name'        => "user-list",
                 'description' => "Listar Usuarios"
@@ -40,9 +40,9 @@ class PermissionSeeder extends Seeder
                 'name'        => "user-delete",
                 'description' => "Eliminar Usuario"
             ],
-            // End User permissions /////////////////
+            //</editor-fold>
 
-            // Role Permission /////////////////////
+            //<editor-fold desc="User Role Permission">
             [
                 'name'        => "user-role-list",
                 'description' => "Listar roles de usuario"
@@ -67,9 +67,9 @@ class PermissionSeeder extends Seeder
                 'name'        => "user-role-delete",
                 'description' => "Eliminar Rol de Usuario"
             ],
-            // End Role Permission /////////////////////
+            //</editor-fold>
 
-            // Country Permission /////////////////////
+            //<editor-fold desc="Country Permission">
             [
                 'name'        => "country-list",
                 'description' => "Listar Paises"
@@ -94,9 +94,9 @@ class PermissionSeeder extends Seeder
                 'name'        => "country-delete",
                 'description' => "Eliminar Pais"
             ],
-            // End Country Permission /////////////////////
+            //</editor-fold>
 
-            // City Permission //////////////////////////
+            //<editor-fold desc="City Permission">
             [
                 'name'        => "city-list",
                 'description' => "Listar Ciudades"
@@ -121,7 +121,34 @@ class PermissionSeeder extends Seeder
                 'name'        => "city-delete",
                 'description' => "Eliminar Ciudad"
             ],
-            // End City Permission //////////////////////////
+            //</editor-fold>
+
+            //<editor-fold desc="Property Types Permissions">
+            [
+                'name'        => "property-type-list",
+                'description' => "Listar Tipos de Propiedades"
+            ],
+            [
+                'name'        => "property-type-create",
+                'description' => "Crear Tipo de Propiedad"
+            ],
+            [
+                'name'        => "property-type-show",
+                'description' => "Mostrar Tipo de Propiedad"
+            ],
+            [
+                'name'        => "property-type-edit",
+                'description' => "Editar Tipo de Propiedad"
+            ],
+            [
+                'name'        => "property-type-status",
+                'description' => "Cambiar Tipo de Propiedad"
+            ],
+            [
+                'name'        => "property-type-delete",
+                'description' => "Eliminar Tipo de Propiedad"
+            ],
+            //</editor-fold>
         ];
 
         // Take all the permission and loop over them
@@ -134,8 +161,11 @@ class PermissionSeeder extends Seeder
             ]);
         }
 
+        //Get all the permissions formatted from the database
         $newPermissions = Permission::pluck('name')->all();
+        //Get the admin user
         $adminRole = Role::first();
+        //Assign all the permissions to the admin user
         $adminRole->syncPermissions($newPermissions);
     }
 }

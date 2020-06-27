@@ -120,3 +120,22 @@ Route::group(['prefix' => 'city'], function(){
     //DELETE: Deletes and user
     Route::delete('/{city}', 'CityController@destroy')->middleware('auth')->name('city.destroy');
 });
+
+Route::group(['prefix' => 'propertyType'], function(){
+    //GET: Get all users
+    Route::get('/', 'PropertyTypeController@index')->middleware('auth')->name('propertyType.index');
+    //GET: Create a new user view
+    Route::get('/create', 'PropertyTypeController@create')->middleware('auth')->name('propertyType.create');
+    //GET: Edit an user view
+    Route::get('/{propertyType}/edit', 'PropertyTypeController@edit')->middleware('auth')->name('propertyType.edit');
+    //GET: Show an user view
+    Route::get('/{propertyType}/show', 'PropertyTypeController@show')->middleware('auth')->name('propertyType.show');
+    //POST: Create a new user
+    Route::post('/', 'PropertyTypeController@store')->middleware('auth')->name('propertyType.store');
+    //POST: Change the user status
+    Route::post('/changeStatus/{propertyType}', 'PropertyTypeController@changeStatus')->middleware('auth')->name('propertyType.changeStatus');
+    //PATCH: Update an existing user
+    Route::patch('/{propertyType}', 'PropertyTypeController@update')->middleware('auth')->name('propertyType.update');
+    //DELETE: Deletes and user
+    Route::delete('/{propertyType}', 'PropertyTypeController@destroy')->middleware('auth')->name('propertyType.destroy');
+});
