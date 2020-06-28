@@ -169,7 +169,7 @@ Route::group(['prefix' => 'propertyLegalCondition'], function(){
     //GET: Show an user view
     Route::get('/{propertyLegalCondition}/show', 'PropertyLegalConditionController@show')->middleware('auth')->name('propertyLegalCondition.show');
     //POST: Create a new user
-    Route::post('/', 'PropertyLegalConditionController@store')->middleware('auth')->name('propertyStatus.store');
+    Route::post('/', 'PropertyLegalConditionController@store')->middleware('auth')->name('propertyLegalCondition.store');
     //POST: Change the user status
     Route::post('/propertyLegalCondition/{propertyStatus}', 'PropertyLegalConditionController@changeStatus')->middleware('auth')->name('propertyLegalCondition.changeStatus');
     //PATCH: Update an existing user

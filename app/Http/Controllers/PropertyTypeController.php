@@ -68,15 +68,15 @@ class PropertyTypeController extends Controller
      */
     public function store(Request $request)
     {
-         Validator::make($request->all(), [
-             'name' => ['required', 'string', 'max:255', 'unique:property_types,name']
-         ])->validate();
+        Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255', 'unique:property_types,name']
+        ])->validate();
 
-         $data               = $request->all();
-         $data['name']       = strtoupper($data['name']);
-         $data['created_by'] = auth()->user()->id;
+        $data               = $request->all();
+        $data['name']       = strtoupper($data['name']);
+        $data['created_by'] = auth()->user()->id;
 
-         $propertyType = PropertyType::create($data);
+        $propertyType = PropertyType::create($data);
 
         return redirect()
             ->route('propertyType.edit', compact('propertyType'))
@@ -85,7 +85,7 @@ class PropertyTypeController extends Controller
 
     /**
      * Receive the form information and updates the item
-     * @param $request
+     * @param Request $request
      * @param PropertyType $propertyType
      * @method PATCH
      */
@@ -131,7 +131,7 @@ class PropertyTypeController extends Controller
         ]);
 
         return redirect()
-            ->route('propertyType.index', compact('propertyType'))
+            ->route('propertyType.index')
             ->with('success', trans('messages.propertyTypeUpdated'));
     }
 }
