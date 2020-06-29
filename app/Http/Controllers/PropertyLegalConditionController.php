@@ -92,7 +92,7 @@ class PropertyLegalConditionController extends Controller
     public function update(Request $request, PropertyLegalCondition $propertyLegalCondition)
     {
         Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255', Rule::unique('property_legal_condition')->ignoreModel($propertyLegalCondition)]
+            'name' => ['required', 'string', 'max:255', Rule::unique('property_legal_conditions')->ignoreModel($propertyLegalCondition)]
         ])->validate();
 
         $data = $request->all();

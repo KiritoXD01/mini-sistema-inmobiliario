@@ -67,7 +67,7 @@
                                         @can('property-legal-status')
                                             <form action="{{ route('propertyLegalCondition.changeStatus', $propertyLegalCondition->id) }}" method="post" id="formChangeStatus-{{ $propertyLegalCondition->id }}">
                                                 @csrf
-                                                @if($propertyType->status)
+                                                @if($propertyLegalCondition->status)
                                                     <button type="button" class="dropdown-item" onclick="disableItem({{ $propertyLegalCondition->id }})">
                                                         <i class="fa fa-square fa-fw"></i> @lang('messages.disable')
                                                     </button>
