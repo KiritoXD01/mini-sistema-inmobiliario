@@ -83,6 +83,16 @@
         </li>
     @endcan
 
+    @can('property-list')
+    <!-- Nav Item - Roles -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('property.index') }}">
+                <i class="fas fa-fw fa-home"></i>
+                <span>@lang('messages.properties')</span>
+            </a>
+        </li>
+    @endcan
+
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

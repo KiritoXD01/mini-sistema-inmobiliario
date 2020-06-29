@@ -79,4 +79,9 @@ return [
     'propertyLegalConditionCreated' => 'Condición Legal creado exitosamente',
     'propertyLegalConditionUpdated' => 'Condición Legal actualizado exitosamente',
     'propertyLegalConditionDeleted' => 'Condición Legal eliminado exitosamente',
+    'properties' => "Propiedades",
+    'property' => "Propiedad",
+    'propertyCreated' => 'Propiedad creada exitosamente',
+    'propertyUpdated' => 'Propiedad actualizada exitosamente',
+    'propertyDeleted' => 'Propiedad eliminada exitosamente',
 ];

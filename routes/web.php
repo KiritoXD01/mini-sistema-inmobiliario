@@ -171,9 +171,28 @@ Route::group(['prefix' => 'propertyLegalCondition'], function(){
     //POST: Create a new user
     Route::post('/', 'PropertyLegalConditionController@store')->middleware('auth')->name('propertyLegalCondition.store');
     //POST: Change the user status
-    Route::post('/propertyLegalCondition/{propertyLegalCondition}', 'PropertyLegalConditionController@changeStatus')->middleware('auth')->name('propertyLegalCondition.changeStatus');
+    Route::post('/changeStatus/{propertyLegalCondition}', 'PropertyLegalConditionController@changeStatus')->middleware('auth')->name('propertyLegalCondition.changeStatus');
     //PATCH: Update an existing user
     Route::patch('/{propertyLegalCondition}', 'PropertyLegalConditionController@update')->middleware('auth')->name('propertyLegalCondition.update');
     //DELETE: Deletes and user
     Route::delete('/{propertyLegalCondition}', 'PropertyLegalConditionController@destroy')->middleware('auth')->name('propertyLegalCondition.destroy');
+});
+
+Route::group(['prefix' => 'property'], function(){
+    //GET: Get all users
+    Route::get('/', 'PropertyController@index')->middleware('auth')->name('property.index');
+    //GET: Create a new user view
+    Route::get('/create', 'PropertyController@create')->middleware('auth')->name('property.create');
+    //GET: Edit an user view
+    Route::get('/{property}/edit', 'PropertyController@edit')->middleware('auth')->name('property.edit');
+    //GET: Show an user view
+    Route::get('/{property}/show', 'PropertyController@show')->middleware('auth')->name('property.show');
+    //POST: Create a new user
+    Route::post('/', 'PropertyController@store')->middleware('auth')->name('property.store');
+    //POST: Change the user status
+    Route::post('/changeStatus/{property}', 'PropertyController@changeStatus')->middleware('auth')->name('property.changeStatus');
+    //PATCH: Update an existing user
+    Route::patch('/{property}', 'PropertyController@update')->middleware('auth')->name('property.update');
+    //DELETE: Deletes and user
+    Route::delete('/{property}', 'PropertyController@destroy')->middleware('auth')->name('property.destroy');
 });

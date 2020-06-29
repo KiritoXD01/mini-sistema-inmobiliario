@@ -177,7 +177,7 @@ class PermissionSeeder extends Seeder
             ],
             //</editor-fold>
 
-            //<editor-fold desc="Property Legal Conditions">
+            //<editor-fold desc="Property Legal Conditions Permission">
             [
                 'name'        => "property-legal-list",
                 'description' => "Listar Condiciones Legales de Propiedades"
@@ -201,6 +201,33 @@ class PermissionSeeder extends Seeder
             [
                 'name'        => "property-legal-delete",
                 'description' => "Eliminar Condicion Legal de Propiedad"
+            ],
+            //</editor-fold>
+
+            //<editor-fold desc="Property Permissions">
+            [
+                'name'        => "property-list",
+                'description' => "Listar Propiedades"
+            ],
+            [
+                'name'        => "property-create",
+                'description' => "Crear Propiedad"
+            ],
+            [
+                'name'        => "property-show",
+                'description' => "Mostrar Propiedad"
+            ],
+            [
+                'name'        => "property-edit",
+                'description' => "Editar Propiedad"
+            ],
+            [
+                'name'        => "property-status",
+                'description' => "Cambiar Propiedad"
+            ],
+            [
+                'name'        => "property-delete",
+                'description' => "Eliminar Propiedad"
             ],
             //</editor-fold>
         ];
