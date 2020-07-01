@@ -75,8 +75,8 @@
                             <label for="property_legal_condition_id">@lang('messages.propertyLegalCondition')</label>
                             <select id="property_legal_condition_id" name="property_legal_condition_id" class="form-control" required style="width: 100%;">
                                 <option value="" disabled selected hidden>-- @lang('messages.propertyLegalCondition') --</option>
-                                @foreach($propertyTypes as $propertyType)
-                                    <option value="{{ $propertyType->id }}" @if($propertyType->id == old('property_type_id')) selected @endif>{{ $propertyType->name }}</option>
+                                @foreach($propertyLegalConditions as $propertyLegalCondition)
+                                    <option value="{{ $propertyLegalCondition->id }}" @if($propertyLegalCondition->id == old('property_legal_condition_id')) selected @endif>{{ $propertyLegalCondition->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -164,7 +164,6 @@
 
             //Filter the cities with the country_id
             $("#country_id").change(function(){
-                document.getElementById("city_id").disabled = false;
                 const country_id = this.value;
                 const url = "{{ route('property.getCitiesByCountry')}}";
 
@@ -180,6 +179,7 @@
                     $("#city_id").select2({
                         theme: 'bootstrap4'
                     });
+                    document.getElementById("city_id").disabled = false;
                 });
             });
         });

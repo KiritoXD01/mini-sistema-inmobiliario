@@ -11,6 +11,7 @@ use App\Models\PropertyType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PropertyController extends Controller
 {
@@ -23,7 +24,7 @@ class PropertyController extends Controller
         $this->middleware('permission:property-show', ['only' => ['show']]);
         $this->middleware('permission:property-create', ['only' => ['create','store']]);
         $this->middleware('permission:property-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:property', ['only' => ['changeStatus']]);
+        $this->middleware('permission:property-status', ['only' => ['changeStatus']]);
         $this->middleware('permission:property-delete', ['only' => ['destroy']]);
     }
 
@@ -95,7 +96,7 @@ class PropertyController extends Controller
             'property'                => $property,
             'cities'                  => $cities
         ];
-        return view('property.edit', compact('data'));
+        return view('property.edit', $data);
     }
 
     /**
@@ -117,7 +118,7 @@ class PropertyController extends Controller
     {
         Validator::make($request->all(), [
             'name'        => ['required', 'string', 'max:255'],
-            'code'        => ['nullable', 'string', 'max:255'],
+            'code'        => ['nullable', 'string', 'max:255', 'unique:properties,code'],
             'price'       => ['required', 'numeric'],
         ])->validate();
 
@@ -129,6 +130,60 @@ class PropertyController extends Controller
 
         return redirect()
             ->route('property.edit', compact('property'))
-            ->with('success', trans('messages.propertyLegalConditionCreated'));
+            ->with('success', trans('messages.propertyCreated'));
+    }
+
+    /**
+     * Receive the form information and updates the item
+     * @param Request $request
+     * @param Property $property
+     * @method PATCH
+     */
+    public function update(Request $request, Property $property)
+    {
+        Validator::make($request->all(), [
+            'name'        => ['required', 'string', 'max:255'],
+            'code'        => ['nullable', 'string', 'max:255', Rule::unique('properties')->ignoreModel($property)],
+            'price'       => ['required', 'numeric'],
+        ])->validate();
+
+        $data         = $request->all();
+        $data['code'] = (empty($data['code'])) ? Str::random(8) : $data['code'];
+
+        $property->update($data);
+
+        return redirect()
+            ->route('property.edit', compact('property'))
+            ->with('success', trans('messages.propertyUpdated'));
+    }
+
+    /**
+     * Delete the item
+     * @param Property $property
+     * @method DELETE
+     */
+    public function destroy(Property $property)
+    {
+        $property->delete();
+        return redirect()
+            ->route('property.index')
+            ->with('success', trans('messages.propertyDeleted'));
+    }
+
+    /**
+     * Change the status of the item
+     * @param Property $property
+     * @method POST
+     */
+    public function changeStatus(Property $property)
+    {
+        $property = Property::find($property->id);
+        $property->update([
+            'status' => ($property->status) ? 0 : 1
+        ]);
+
+        return redirect()
+            ->route('property.index')
+            ->with('success', trans('messages.propertyUpdated'));
     }
 }

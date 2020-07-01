@@ -82,7 +82,7 @@
                         <input type="text" id="name" class="form-control" value="{{ $propertyLegalCondition->name }}" placeholder="@lang('messages.name')..." readonly>
                     </div>
                     <div class="form-group">
-                        <label for="status">@lang('messages.name')</label>
+                        <label for="status">@lang('messages.status')</label>
                         <input type="text" id="status" class="form-control" value="@if($propertyLegalCondition->status) @lang('messages.enabled') @else @lang('messages.disabled') @endif" readonly>
                     </div>
                 </div>
