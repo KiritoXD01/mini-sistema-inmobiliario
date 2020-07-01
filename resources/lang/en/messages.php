@@ -79,4 +79,6 @@ return [
     'propertyLegalConditionCreated' => 'Property Legal Condition created successfully',
     'propertyLegalConditionUpdated' => 'Property Legal Condition updated successfully',
     'propertyLegalConditionDeleted' => 'Property Legal Condition deleted successfully',
+    'price' => "Price",
+    'description' => "Description"
 ];

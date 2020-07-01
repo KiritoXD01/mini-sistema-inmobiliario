@@ -57,4 +57,44 @@ class Property extends Model
     /*
      * Get the property type
      */
+    public function propertyType()
+    {
+        return $this->belongsTo('App\Models\PropertyType', 'property_type_id', 'id')->withDefault([
+            'id'   => 0,
+            'name' => 'Undefined'
+        ]);
+    }
+
+    /*
+     * Get the property legal condition
+     */
+    public function propertyLegalCondition()
+    {
+        return $this->belongsTo('App\Models\PropertyLegalCondition', 'property_legal_condition_id', 'id')->withDefault([
+            'id'   => 0,
+            'name' => 'Undefined'
+        ]);
+    }
+
+    /*
+     * Get the property country
+     */
+    public function country()
+    {
+        return $this->belongsTo('App\Models\Country', 'country_id', 'id')->withDefault([
+            'id'   => 0,
+            'name' => 'Undefined'
+        ]);
+    }
+
+    /*
+     * Get teh property city
+     */
+    public function city()
+    {
+        return $this->belongsTo('App\Models\City', 'city_id', 'id')->withDefault([
+            'id'   => 0,
+            'name' => 'Undefined'
+        ]);
+    }
 }

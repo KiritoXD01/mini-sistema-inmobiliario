@@ -84,4 +84,6 @@ return [
     'propertyCreated' => 'Propiedad creada exitosamente',
     'propertyUpdated' => 'Propiedad actualizada exitosamente',
     'propertyDeleted' => 'Propiedad eliminada exitosamente',
+    'price' => "Precio",
+    'description' => "Descripción"
 ];

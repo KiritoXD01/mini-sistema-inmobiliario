@@ -15,7 +15,7 @@ class CreatePropertiesTable extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->string('code', 8)->unique();
+            $table->string('code', 255)->unique();
             $table->string('name', 255);
             $table->text('description')->nullable();
             $table->decimal('price');

@@ -187,6 +187,8 @@ Route::group(['prefix' => 'property'], function(){
     Route::get('/{property}/edit', 'PropertyController@edit')->middleware('auth')->name('property.edit');
     //GET: Show an user view
     Route::get('/{property}/show', 'PropertyController@show')->middleware('auth')->name('property.show');
+    //GET: Get all the cities by the country_id
+    Route::get('/getCitiesByCountry', 'PropertyController@getCitiesByCountry')->middleware('auth')->name('property.getCitiesByCountry');
     //POST: Create a new user
     Route::post('/', 'PropertyController@store')->middleware('auth')->name('property.store');
     //POST: Change the user status

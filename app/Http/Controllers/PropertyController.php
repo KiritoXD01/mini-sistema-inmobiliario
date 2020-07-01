@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\Country;
 use App\Models\Property;
+use App\Models\PropertyLegalCondition;
+use App\Models\PropertyStatus;
+use App\Models\PropertyType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class PropertyController extends Controller
 {
@@ -36,6 +43,92 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        return view('property.create');
+        $allPropertyStatus       = PropertyStatus::select('id', 'name')->where('status', true)->get();
+        $propertyTypes           = PropertyType::select('id', 'name')->where('status', true)->get();
+        $propertyLegalConditions = PropertyLegalCondition::select('id', 'name')->where('status', true)->get();
+        $countries               = Country::select('id', 'name')->where('status', true)->get();
+        $data = [
+            'allPropertyStatus'       => $allPropertyStatus,
+            'propertyTypes'           => $propertyTypes,
+            'propertyLegalConditions' => $propertyLegalConditions,
+            'countries'               => $countries
+        ];
+        return view('property.create', $data);
+    }
+
+    /**
+     * Get all the cities by the country_id
+     * @param Request $request
+     * @method GET
+     */
+    public function getCitiesByCountry(Request $request)
+    {
+        $country = Country::find($request->country_id);
+        return $country->cities()
+            ->select('id', 'name')
+            ->where('status', true)
+            ->get();
+    }
+
+    /**
+     * Show the edit view with the item information
+     * @param Property $property
+     * @method GET
+     */
+    public function edit(Property $property)
+    {
+        $allPropertyStatus       = PropertyStatus::select('id', 'name')->where('status', true)->get();
+        $propertyTypes           = PropertyType::select('id', 'name')->where('status', true)->get();
+        $propertyLegalConditions = PropertyLegalCondition::select('id', 'name')->where('status', true)->get();
+        $countries               = Country::select('id', 'name')->where('status', true)->get();
+        $cities                  = City::select('id', 'name')
+                                        ->where([
+                                            ['status', true],
+                                            ['country_id', $property->country_id]
+                                        ])
+                                        ->get();
+        $data = [
+            'allPropertyStatus'       => $allPropertyStatus,
+            'propertyTypes'           => $propertyTypes,
+            'propertyLegalConditions' => $propertyLegalConditions,
+            'countries'               => $countries,
+            'property'                => $property,
+            'cities'                  => $cities
+        ];
+        return view('property.edit', compact('data'));
+    }
+
+    /**
+     * Display the show view with the item information in readonly mode
+     * @param Property $property
+     * @method GET
+     */
+    public function show(Property $property)
+    {
+        return view('property.show', compact('property'));
+    }
+
+    /**
+     * Receive the form information and creates the item
+     * @param Request $request
+     * @method POST
+     */
+    public function store(Request $request)
+    {
+        Validator::make($request->all(), [
+            'name'        => ['required', 'string', 'max:255'],
+            'code'        => ['nullable', 'string', 'max:255'],
+            'price'       => ['required', 'numeric'],
+        ])->validate();
+
+        $data               = $request->all();
+        $data['code']       = (empty($data['code'])) ? Str::random(8) : $data['code'];
+        $data['created_by'] = auth()->user()->id;
+
+        $property = Property::create($data);
+
+        return redirect()
+            ->route('property.edit', compact('property'))
+            ->with('success', trans('messages.propertyLegalConditionCreated'));
     }
 }
