@@ -28,13 +28,5 @@ class UserSeeder extends Seeder
 
         //Asign role to user
         $user->assignRole(strtoupper('admin'));
-
-        // Get all the roles created except the admin role
-        $roles = Role::where('name', '<>', strtoupper('admin'))->get();
-
-        foreach ($roles as $role) {
-            $user = factory(User::class)->create();
-            $user->assignRole($role['name']);
-        }
     }
 }
