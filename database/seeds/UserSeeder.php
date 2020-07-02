@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
             'password'          => bcrypt('password'), // password
             'remember_token'    => Str::random(10),
+            'code'              => Str::random(8)
         ]);
 
         //Asign role to user
