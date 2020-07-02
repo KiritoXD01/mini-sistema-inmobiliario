@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
@@ -14,11 +16,12 @@ class UserSeeder extends Seeder
     public function run()
     {
         // Admin User
-        $user = factory(User::class)->create([
-            'email'       => 'admin@admin.com',
-            'firstname'   => "Usuario",
-            'lastname'    => "Admin",
-            'phonenumber' => ""
+        $user = User::create([
+            'name'              => "Usuario Admin",
+            'email'             => "admin@admin.com",
+            'email_verified_at' => Carbon::now(),
+            'password'          => bcrypt('password'), // password
+            'remember_token'    => Str::random(10),
         ]);
 
         //Asign role to user
