@@ -80,5 +80,10 @@ return [
     'propertyLegalConditionUpdated' => 'Property Legal Condition updated successfully',
     'propertyLegalConditionDeleted' => 'Property Legal Condition deleted successfully',
     'price' => "Price",
-    'description' => "Description"
+    'description' => "Description",
+    'currency' => "Currency",
+    'currencies' => "Currencies",
+    'currencyCreated' => 'Currency created successfully',
+    'currencyUpdated' => 'Currency updated successfully',
+    'currencyDeleted' => 'Currency deleted successfully',
 ];

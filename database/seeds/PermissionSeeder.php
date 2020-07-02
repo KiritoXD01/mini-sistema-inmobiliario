@@ -230,6 +230,33 @@ class PermissionSeeder extends Seeder
                 'description' => "Eliminar Propiedad"
             ],
             //</editor-fold>
+
+            //<editor-fold desc="Currency Permission">
+            [
+                'name'        => "currency-list",
+                'description' => "Listar Monedas"
+            ],
+            [
+                'name'        => "currency-create",
+                'description' => "Crear Moneda"
+            ],
+            [
+                'name'        => "currency-show",
+                'description' => "Mostrar Moneda"
+            ],
+            [
+                'name'        => "currency-edit",
+                'description' => "Editar Moneda"
+            ],
+            [
+                'name'        => "currency-status",
+                'description' => "Cambiar Moneda"
+            ],
+            [
+                'name'        => "currency-delete",
+                'description' => "Eliminar Moneda"
+            ],
+            //</editor-fold>
         ];
 
         // Take all the permission and loop over them

@@ -198,3 +198,22 @@ Route::group(['prefix' => 'property'], function(){
     //DELETE: Deletes and user
     Route::delete('/{property}', 'PropertyController@destroy')->middleware('auth')->name('property.destroy');
 });
+
+Route::group(['prefix' => 'currency'], function(){
+    //GET: Get all users
+    Route::get('/', 'CurrencyController@index')->middleware('auth')->name('currency.index');
+    //GET: Create a new user view
+    Route::get('/create', 'CurrencyController@create')->middleware('auth')->name('currency.create');
+    //GET: Edit an user view
+    Route::get('/{currency}/edit', 'CurrencyController@edit')->middleware('auth')->name('currency.edit');
+    //GET: Show an user view
+    Route::get('/{currency}/show', 'CurrencyController@show')->middleware('auth')->name('currency.show');
+    //POST: Create a new user
+    Route::post('/', 'CurrencyController@store')->middleware('auth')->name('currency.store');
+    //POST: Change the user status
+    Route::post('/changeStatus/{currency}', 'CurrencyController@changeStatus')->middleware('auth')->name('currency.changeStatus');
+    //PATCH: Update an existing user
+    Route::patch('/{currency}', 'CurrencyController@update')->middleware('auth')->name('currency.update');
+    //DELETE: Deletes and user
+    Route::delete('/{currency}', 'CurrencyController@destroy')->middleware('auth')->name('currency.destroy');
+});

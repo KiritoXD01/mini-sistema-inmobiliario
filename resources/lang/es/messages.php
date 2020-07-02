@@ -85,5 +85,10 @@ return [
     'propertyUpdated' => 'Propiedad actualizada exitosamente',
     'propertyDeleted' => 'Propiedad eliminada exitosamente',
     'price' => "Precio",
-    'description' => "Descripción"
+    'description' => "Descripción",
+    'currency' => "Moneda",
+    'currencies' => "Monedas",
+    'currencyCreated' => 'Moneda creada exitosamente',
+    'currencyUpdated' => 'Moneda actualizada exitosamente',
+    'currencyDeleted' => 'Moneda eliminada exitosamente',
 ];

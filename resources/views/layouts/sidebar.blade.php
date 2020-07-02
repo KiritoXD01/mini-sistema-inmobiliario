@@ -83,6 +83,16 @@
         </li>
     @endcan
 
+    @can('currency-list')
+    <!-- Nav Item - Roles -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('currency.index') }}">
+                <i class="fas fa-fw fa-dollar-sign"></i>
+                <span>@lang('messages.currency')</span>
+            </a>
+        </li>
+    @endcan
+
     @can('property-list')
     <!-- Nav Item - Roles -->
         <li class="nav-item">
