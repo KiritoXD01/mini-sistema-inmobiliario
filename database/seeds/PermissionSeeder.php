@@ -269,11 +269,14 @@ class PermissionSeeder extends Seeder
             ]);
         }
 
-        //Get all the permissions formatted from the database
-        $newPermissions = Permission::pluck('name')->all();
-        //Get the admin user
-        $adminRole = Role::first();
-        //Assign all the permissions to the admin user
-        $adminRole->syncPermissions($newPermissions);
+        //Check if the admin user already exists
+        if (Role::first()) {
+            //Get all the permissions formatted from the database
+            $newPermissions = Permission::pluck('name')->all();
+            //Get the admin user
+            $adminRole = Role::first();
+            //Assign all the permissions to the admin user
+            $adminRole->syncPermissions($newPermissions);
+        }
     }
 }
