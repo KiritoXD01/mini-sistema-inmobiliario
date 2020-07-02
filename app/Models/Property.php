@@ -20,7 +20,7 @@ class Property extends Model
         'code', 'name', 'description', 'price',
         'status', 'property_status_id', 'property_type_id',
         'property_legal_condition_id', 'country_id',
-        'city_id', 'created_by'
+        'city_id', 'created_by', 'currency_id'
     ];
 
     /**
@@ -88,11 +88,22 @@ class Property extends Model
     }
 
     /*
-     * Get teh property city
+     * Get the property city
      */
     public function city()
     {
         return $this->belongsTo('App\Models\City', 'city_id', 'id')->withDefault([
+            'id'   => 0,
+            'name' => 'Undefined'
+        ]);
+    }
+
+    /*
+     * Get the currency of the property
+     */
+    public function currency()
+    {
+        return $this->belongsTo('App\Models\Currency', 'currency_id', 'id')->withDefault([
             'id'   => 0,
             'name' => 'Undefined'
         ]);

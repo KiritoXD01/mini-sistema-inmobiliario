@@ -91,4 +91,5 @@ return [
     'currencyCreated' => 'Moneda creada exitosamente',
     'currencyUpdated' => 'Moneda actualizada exitosamente',
     'currencyDeleted' => 'Moneda eliminada exitosamente',
+    'convertedPrice' => "Precio Convertido"
 ];

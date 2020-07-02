@@ -47,9 +47,24 @@
                             <label for="code">@lang('messages.code')</label>
                             <input type="text" id="code" name="code" class="form-control" maxlength="255" value="{{ old('code') }}" placeholder="@lang('messages.code')...">
                         </div>
-                        <div class="form-group">
-                            <label for="price">@lang('messages.price')</label>
-                            <input type="text" id="price" name="price" required class="form-control" value="{{ old('price') }}" placeholder="@lang('messages.price')...">
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label for="price">@lang('messages.price')</label>
+                                <input type="text" id="price" name="price" required class="form-control" value="{{ old('price') }}" placeholder="@lang('messages.price')...">
+                            </div>
+                            <div class="col-4">
+                                <label for="currency_id">@lang('messages.currency')</label>
+                                <select id="currency_id" name="currency_id" class="form-control" required style="width: 100%;">
+                                    <option value="" selected hidden disabled>-- @lang('messages.currency') --</option>
+                                    @foreach($currencies as $currency)
+                                        <option value="{{ $currency->id }}" data-rate="{{ $currency->rate }}" @if(old('currency_id') == $currency->id) selected @endif>{{ $currency->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label for="convertedPrice">@lang('messages.convertedPrice')</label>
+                                <input type="text" id="convertedPrice" class="form-control" placeholder="@lang('messages.convertedPrice')..." value="" readonly style="background-color: white;">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="property_status_id">@lang('messages.propertyStatus')</label>
@@ -145,6 +160,31 @@
             $("#country_id").select2({
                 theme: 'bootstrap4'
             });
+            $("#currency_id").select2({
+                theme: 'bootstrap4'
+            });
+
+            //Event handler to update the converted price when
+            //the currency changes
+            $("#currency_id").change(function(){
+                if (document.getElementById("price").value.length > 0) {
+                    const rate  = parseFloat($(this).find(":selected").data("rate"));
+                    const price = parseFloat(document.getElementById("price").value);
+
+                    document.getElementById("convertedPrice").value = parseFloat(price * rate).toFixed(2);
+                }
+            });
+
+            //Event handler to update the converted price when
+            //the price changes
+            $("#price").change(function(){
+                if (this.value.length > 0 && parseFloat($("#currency_id").find(':selected').data("rate")) > 0) {
+                    const rate  = parseFloat($("#currency_id").find(':selected').data("rate"));
+                    const price = parseFloat(this.value);
+
+                    document.getElementById("convertedPrice").value = parseFloat(price * rate).toFixed(2);
+                }
+            });
 
             //Event handler to allow only one dot and numbers
             $("#price").keydown(function(event){
@@ -182,6 +222,8 @@
                     document.getElementById("city_id").disabled = false;
                 });
             });
+
+
         });
     </script>
 @endsection

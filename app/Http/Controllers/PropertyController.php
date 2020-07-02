@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Country;
+use App\Models\Currency;
 use App\Models\Property;
 use App\Models\PropertyLegalCondition;
 use App\Models\PropertyStatus;
@@ -48,11 +49,13 @@ class PropertyController extends Controller
         $propertyTypes           = PropertyType::select('id', 'name')->where('status', true)->get();
         $propertyLegalConditions = PropertyLegalCondition::select('id', 'name')->where('status', true)->get();
         $countries               = Country::select('id', 'name')->where('status', true)->get();
+        $currencies              = Currency::select('id', 'name', 'rate')->where('status', true)->get();
         $data = [
             'allPropertyStatus'       => $allPropertyStatus,
             'propertyTypes'           => $propertyTypes,
             'propertyLegalConditions' => $propertyLegalConditions,
-            'countries'               => $countries
+            'countries'               => $countries,
+            'currencies'              => $currencies
         ];
         return view('property.create', $data);
     }
@@ -81,6 +84,7 @@ class PropertyController extends Controller
         $allPropertyStatus       = PropertyStatus::select('id', 'name')->where('status', true)->get();
         $propertyTypes           = PropertyType::select('id', 'name')->where('status', true)->get();
         $propertyLegalConditions = PropertyLegalCondition::select('id', 'name')->where('status', true)->get();
+        $currencies              = Currency::select('id', 'name', 'rate')->where('status', true)->get();
         $countries               = Country::select('id', 'name')->where('status', true)->get();
         $cities                  = City::select('id', 'name')
                                         ->where([
@@ -94,7 +98,8 @@ class PropertyController extends Controller
             'propertyLegalConditions' => $propertyLegalConditions,
             'countries'               => $countries,
             'property'                => $property,
-            'cities'                  => $cities
+            'cities'                  => $cities,
+            'currencies'              => $currencies
         ];
         return view('property.edit', $data);
     }
