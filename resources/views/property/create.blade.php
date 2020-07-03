@@ -10,7 +10,7 @@
     </div>
     <!-- End Page Heading -->
 
-    <form action="{{ route('property.store') }}" method="post" autocomplete="off" id="form">
+    <form action="{{ route('property.store') }}" method="post" autocomplete="off" id="form" enctype="multipart/form-data">
         @csrf
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -130,6 +130,14 @@
                 </div>
             </div>
         </div>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                Imagen
+            </div>
+            <div class="card-body">
+                <div class="input-images"></div>
+            </div>
+        </div>
     </form>
 @endsection
 
@@ -223,7 +231,15 @@
                 });
             });
 
+            $(".btn-success").click(function(){
+                var lsthmtl = $(".clone").html();
+                $(".increment").after(lsthmtl);
+            });
+            $("body").on("click",".btn-danger",function(){
+                $(this).parents(".hdtuto control-group lst").remove();
+            });
 
+            $('.input-images').imageUploader();
         });
     </script>
 @endsection

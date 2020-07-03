@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Currency;
 use App\Models\Property;
+use App\Models\PropertyImage;
 use App\Models\PropertyLegalCondition;
 use App\Models\PropertyStatus;
 use App\Models\PropertyType;
@@ -132,6 +133,18 @@ class PropertyController extends Controller
         $data['created_by'] = auth()->user()->id;
 
         $property = Property::create($data);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $fileName = "property_".Str::random(8).".".$file->getClientOriginalExtension();
+                $file->move(public_path('images/properties'), $fileName);
+
+                PropertyImage::create([
+                    'path'        => "images/properties/{$fileName}",
+                    'property_id' => $property->id
+                ]);
+            }
+        }
 
         return redirect()
             ->route('property.edit', compact('property'))

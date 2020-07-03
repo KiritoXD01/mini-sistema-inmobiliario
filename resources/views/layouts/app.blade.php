@@ -31,6 +31,11 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap4.min.css') }}">
+
+    <!-- Image-uploader -->
+    <link rel="stylesheet" href="{{ asset('vendor/image-uploader/image-uploader.min.css') }}">
+
+    @yield('css')
 </head>
 <body id="page-top">
 
@@ -85,6 +90,9 @@
 
 <!-- Select2 -->
 <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+
+<!-- image uploader -->
+<script src="{{ asset('vendor/image-uploader/image-uploader.min.js') }}"></script>
 
 @yield('javascript')
 </body>

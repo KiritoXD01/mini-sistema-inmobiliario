@@ -108,4 +108,12 @@ class Property extends Model
             'name' => 'Undefined'
         ]);
     }
+
+    /**
+     * Get all the images that belongs to the property
+     */
+    public function propertyImages()
+    {
+        return $this->hasMany('App\Models\PropertyImage', 'property_id', 'id');
+    }
 }
