@@ -19,7 +19,7 @@ class CreatePropertyImagesTable extends Migration
             $table->unsignedBigInteger("property_id");
             $table->timestamps();
 
-            $table->foreign('property_id')->references('id')->on('properties');
+            $table->foreign('property_id')->references('id')->on('properties')->onDelete("cascade");
         });
     }
 

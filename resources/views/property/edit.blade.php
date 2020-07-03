@@ -10,7 +10,7 @@
     </div>
     <!-- End Page Heading -->
 
-    <form action="{{ route('property.update', $property->id) }}" method="post" id="form" autocomplete="off">
+    <form action="{{ route('property.update', $property->id) }}" method="post" id="form" autocomplete="off" enctype="multipart/form-data">
         @csrf
         @method("PATCH")
         <div class="card shadow mb-4">
@@ -142,6 +142,14 @@
                 </div>
             </div>
         </div>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                Imagen
+            </div>
+            <div class="card-body">
+                <div class="input-images"></div>
+            </div>
+        </div>
     </form>
 @endsection
 
@@ -238,12 +246,27 @@
             });
 
             setConvertedPrice();
+            setImages({{ $property->id }});
         });
 
         function setConvertedPrice() {
             const price = parseFloat(document.getElementById("price").value).toFixed(2);
             const rate  = parseFloat($("#currency_id").find(":selected").data("rate")).toFixed(2);
             document.getElementById("convertedPrice").value = parseFloat(price * rate).toFixed(2);
+        }
+
+        function setImages(property_id) {
+            const url = "{{ route('property.getImages') }}";
+            $.get(url, {
+                property_id: property_id
+            },
+            function(result){
+                $('.input-images').imageUploader({
+                    preloaded: result,
+                    imagesInputName: 'images',
+                    preloadedInputName: 'old'
+                });
+            });
         }
     </script>
 @endsection

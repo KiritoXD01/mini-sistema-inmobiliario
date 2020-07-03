@@ -11,6 +11,7 @@ use App\Models\PropertyLegalCondition;
 use App\Models\PropertyStatus;
 use App\Models\PropertyType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -170,6 +171,38 @@ class PropertyController extends Controller
 
         $property->update($data);
 
+        if ($request->has('old')) {
+            /*
+             * first we check that the old images are the same and if there is an id missing
+             * delete if from the database and delete de file
+             */
+            $oldImages = $property->propertyImages()->whereNotIn("id", $request->old)->get();
+
+            // Then we delete the row and the image
+            foreach ($oldImages as $oldImage) {
+                File::delete(public_path($oldImage->path));
+                $oldImage->delete();
+            }
+        }
+        else {
+            foreach ($property->propertyImages as $image) {
+                File::delete($image->path);
+                $image->delete();
+            }
+        }
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $fileName = "property_".Str::random(8).".".$file->getClientOriginalExtension();
+                $file->move(public_path('images/properties'), $fileName);
+
+                PropertyImage::create([
+                    'path'        => "images/properties/{$fileName}",
+                    'property_id' => $property->id
+                ]);
+            }
+        }
+
         return redirect()
             ->route('property.edit', compact('property'))
             ->with('success', trans('messages.propertyUpdated'));
@@ -182,6 +215,9 @@ class PropertyController extends Controller
      */
     public function destroy(Property $property)
     {
+        foreach ($property->propertyImages() as $image) {
+            File::delete(public_path($image->path));
+        }
         $property->delete();
         return redirect()
             ->route('property.index')
@@ -203,5 +239,29 @@ class PropertyController extends Controller
         return redirect()
             ->route('property.index')
             ->with('success', trans('messages.propertyUpdated'));
+    }
+
+    /**
+     * Change all the images that belong to a property
+     * @param Request $request
+     * @method POST
+     */
+    public function getImages(Request $request)
+    {
+        $images = PropertyImage::select('id', 'path')
+            ->where('property_id', $request->property_id)
+            ->get();
+
+        $data = [];
+
+        foreach ($images as $image)
+        {
+            array_push($data, [
+                'id'  => $image->id,
+                'src' => "/{$image->path}"
+            ]);
+        }
+
+        return response()->json($data);
     }
 }
