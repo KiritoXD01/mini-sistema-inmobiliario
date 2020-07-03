@@ -144,7 +144,7 @@
         </div>
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                Imagen
+                <i class="fa fa-image fa-fw"></i> @lang('messages.images')
             </div>
             <div class="card-body">
                 <div class="input-images"></div>

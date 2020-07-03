@@ -242,7 +242,7 @@ class PropertyController extends Controller
     }
 
     /**
-     * Change all the images that belong to a property
+     * Get all the images that belong to a property
      * @param Request $request
      * @method POST
      */

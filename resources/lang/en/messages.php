@@ -86,5 +86,6 @@ return [
     'currencyCreated' => 'Currency created successfully',
     'currencyUpdated' => 'Currency updated successfully',
     'currencyDeleted' => 'Currency deleted successfully',
-    'convertedPrice' => "Converted Price"
+    'convertedPrice' => "Converted Price",
+    'images' => 'Images'
 ];
