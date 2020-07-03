@@ -84,6 +84,16 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="lounge_quantity">@lang('messages.lounge_quantity')</label>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-switch">
+                                <input type="hidden" name="status" value="0">
+                                <input type="checkbox" class="custom-control-input" id="status" name="status" checked value="1">
+                                <label class="custom-control-label" for="status">@lang('messages.status')</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -111,12 +121,12 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <br>
-                            <div class="custom-control custom-switch">
-                                <input type="hidden" name="status" value="0">
-                                <input type="checkbox" class="custom-control-input" id="status" name="status" checked value="1">
-                                <label class="custom-control-label" for="status">@lang('messages.status')</label>
-                            </div>
+                            <label for="bedroom_quantity">@lang('messages.bedroom_quantity')</label>
+                            <input type="text" id="bedroom_quantity" name="bedroom_quantity" class="form-control" required value="{{ old('bedroom_quantity') }}" placeholder="@lang('messages.bedroom_quantity')..." onkeypress="return isNumberKey(event)">
+                        </div>
+                        <div class="form-group">
+                            <label for="bathroom_quantity">@lang('messages.bathroom_quantity')</label>
+                            <input type="text" id="bathroom_quantity" name="bathroom_quantity" class="form-control" required value="{{ old('bathroom_quantity') }}" placeholder="@lang('messages.bathroom_quantity')..." onkeypress="return isNumberKey(event)">
                         </div>
                     </div>
                 </div>
@@ -241,5 +251,13 @@
 
             $('.input-images').imageUploader();
         });
+
+        function isNumberKey(evt) {
+            let charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
     </script>
 @endsection

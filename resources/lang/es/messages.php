@@ -92,5 +92,7 @@ return [
     'currencyUpdated' => 'Moneda actualizada exitosamente',
     'currencyDeleted' => 'Moneda eliminada exitosamente',
     'convertedPrice' => "Precio Convertido",
-    'images' => 'Imagenes'
+    'images' => 'Imágenes',
+    'bedroom_quantity' => 'Cantidad de Habitaciones',
+    'bathroom_quantity' => 'Cantidad de Baños'
 ];

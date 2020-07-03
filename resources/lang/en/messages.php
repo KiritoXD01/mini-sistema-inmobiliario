@@ -87,5 +87,7 @@ return [
     'currencyUpdated' => 'Currency updated successfully',
     'currencyDeleted' => 'Currency deleted successfully',
     'convertedPrice' => "Converted Price",
-    'images' => 'Images'
+    'images' => 'Images',
+    'bedroom_quantity' => 'Bedroom Quantity',
+    'bathroom_quantity' => 'Bathroom Quantity'
 ];

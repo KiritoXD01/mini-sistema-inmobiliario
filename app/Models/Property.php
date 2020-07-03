@@ -20,7 +20,10 @@ class Property extends Model
         'code', 'name', 'description', 'price',
         'status', 'property_status_id', 'property_type_id',
         'property_legal_condition_id', 'country_id',
-        'city_id', 'created_by', 'currency_id'
+        'city_id', 'created_by', 'currency_id', 'bedroom_quantity',
+        'bathroom_quantity', 'lounge_quantity', 'parking_quantity',
+        'kitchen_quantity', 'property_level', 'has_water',
+        'has_heating', 'has_air_conditioning'
     ];
 
     /**
