@@ -1,6 +1,14 @@
 @extends('layouts.app')
 @section('title', env('APP_NAME').' - '.trans('messages.create').' '.trans('messages.property'))
 
+@section('css')
+<style>
+    .ck-editor__editable_inline {
+        min-height: 400px;
+    }
+</style>
+@endsection
+
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -161,7 +169,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="description">@lang('messages.description')</label>
-                            <textarea id="description" name="description" class="form-control" rows="5" style="resize: none;" placeholder="@lang('messages.description')..."></textarea>
+                            <textarea id="description" name="description" class="form-control"></textarea>
                         </div>
                     </div>
                 </div>
@@ -268,15 +276,14 @@
                 });
             });
 
-            $(".btn-success").click(function(){
-                var lsthmtl = $(".clone").html();
-                $(".increment").after(lsthmtl);
-            });
-            $("body").on("click",".btn-danger",function(){
-                $(this).parents(".hdtuto control-group lst").remove();
-            });
-
             $('.input-images').imageUploader();
+
+            ClassicEditor
+                .create(document.querySelector("#description"),{
+                    removePlugins: ['MediaEmbed', 'EasyImage', 'Image', "ImageCaption", "ImageStyle", "ImageToolbar", "ImageUpload"]
+                })
+                .then(editor => console.log(editor))
+                .catch(error => console.log(error));
         });
 
         function isNumberKey(evt) {

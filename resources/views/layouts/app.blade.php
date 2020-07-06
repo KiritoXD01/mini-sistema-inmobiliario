@@ -94,6 +94,9 @@
 <!-- image uploader -->
 <script src="{{ asset('vendor/image-uploader/image-uploader.min.js') }}"></script>
 
+<!-- ckeditor -->
+<script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+
 @yield('javascript')
 </body>
 </html>
