@@ -244,10 +244,7 @@
             //the currency changes
             $("#currency_id").change(function(){
                 if (document.getElementById("price").value.length > 0) {
-                    const rate  = parseFloat($(this).find(":selected").data("rate"));
-                    const price = parseFloat(document.getElementById("price").value);
-
-                    document.getElementById("convertedPrice").value = parseFloat(price * rate).toFixed(2);
+                    setConvertedPrice();
                 }
             });
 
@@ -255,10 +252,7 @@
             //the price changes
             $("#price").change(function(){
                 if (this.value.length > 0 && parseFloat($("#currency_id").find(':selected').data("rate")) > 0) {
-                    const rate  = parseFloat($("#currency_id").find(':selected').data("rate"));
-                    const price = parseFloat(this.value);
-
-                    document.getElementById("convertedPrice").value = parseFloat(price * rate).toFixed(2);
+                    setConvertedPrice();
                 }
             });
 
@@ -312,7 +306,11 @@
         function setConvertedPrice() {
             const price = parseFloat(document.getElementById("price").value).toFixed(2);
             const rate  = parseFloat($("#currency_id").find(":selected").data("rate")).toFixed(2);
-            document.getElementById("convertedPrice").value = parseFloat(price * rate).toFixed(2);
+            const code  = $("#currency_id").find(":selected").data("code");
+
+            const money = Intl.NumberFormat(code).format(parseFloat(price * rate).toFixed(2));
+
+            document.getElementById("convertedPrice").value = money;
         }
 
         function setImages(property_id) {

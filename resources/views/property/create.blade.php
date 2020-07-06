@@ -65,7 +65,7 @@
                                 <select id="currency_id" name="currency_id" class="form-control" required style="width: 100%;">
                                     <option value="" selected hidden disabled>-- @lang('messages.currency') --</option>
                                     @foreach($currencies as $currency)
-                                        <option value="{{ $currency->id }}" data-rate="{{ $currency->rate }}" @if(old('currency_id') == $currency->id) selected @endif>{{ $currency->name }}</option>
+                                        <option value="{{ $currency->id }}" data-rate="{{ $currency->rate }}" data-code="{{ $currency->format_code }}" @if(old('currency_id') == $currency->id) selected @endif>{{ $currency->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -221,10 +221,7 @@
             //the currency changes
             $("#currency_id").change(function(){
                 if (document.getElementById("price").value.length > 0) {
-                    const rate  = parseFloat($(this).find(":selected").data("rate"));
-                    const price = parseFloat(document.getElementById("price").value);
-
-                    document.getElementById("convertedPrice").value = parseFloat(price * rate).toFixed(2);
+                    setConvertedPrice();
                 }
             });
 
@@ -232,10 +229,7 @@
             //the price changes
             $("#price").change(function(){
                 if (this.value.length > 0 && parseFloat($("#currency_id").find(':selected').data("rate")) > 0) {
-                    const rate  = parseFloat($("#currency_id").find(':selected').data("rate"));
-                    const price = parseFloat(this.value);
-
-                    document.getElementById("convertedPrice").value = parseFloat(price * rate).toFixed(2);
+                    setConvertedPrice();
                 }
             });
 
@@ -292,6 +286,16 @@
                 return false;
             }
             return true;
+        }
+
+        function setConvertedPrice() {
+            const price = parseFloat(document.getElementById("price").value).toFixed(2);
+            const rate  = parseFloat($("#currency_id").find(":selected").data("rate")).toFixed(2);
+            const code  = $("#currency_id").find(":selected").data("code");
+
+            const money = Intl.NumberFormat(code).format(parseFloat(price * rate).toFixed(2));
+
+            document.getElementById("convertedPrice").value = money;
         }
     </script>
 @endsection

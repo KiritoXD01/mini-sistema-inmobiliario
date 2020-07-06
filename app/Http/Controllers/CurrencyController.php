@@ -69,13 +69,15 @@ class CurrencyController extends Controller
     public function store(Request $request)
     {
         Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255', 'unique:currencies,name'],
-            'rate' => ['required', 'numeric']
+            'name'        => ['required', 'string', 'max:255', 'unique:currencies,name'],
+            'rate'        => ['required', 'numeric'],
+            'format_code' => ['required', 'string', 'max:5']
         ])->validate();
 
-        $data               = $request->all();
-        $data['name']       = strtoupper($data['name']);
-        $data['created_by'] = auth()->user()->id;
+        $data                = $request->all();
+        $data['name']        = strtoupper($data['name']);
+        $data['created_by']  = auth()->user()->id;
+        $data['format_code'] = $this->convertCode($data['format_code']);
 
         $currency = Currency::create($data);
 
@@ -93,12 +95,14 @@ class CurrencyController extends Controller
     public function update(Request $request, Currency $currency)
     {
         Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255', Rule::unique('currencies')->ignoreModel($currency)],
-            'rate' => ['required', 'numeric']
+            'name'        => ['required', 'string', 'max:255', Rule::unique('currencies')->ignoreModel($currency)],
+            'rate'        => ['required', 'numeric'],
+            'format_code' => ['required', 'string', 'max:5']
         ])->validate();
 
-        $data = $request->all();
-        $data['name'] = strtoupper($data['name']);
+        $data                = $request->all();
+        $data['name']        = strtoupper($data['name']);
+        $data['format_code'] = $this->convertCode($data['format_code']);
 
         $currency->update($data);
 
@@ -135,5 +139,30 @@ class CurrencyController extends Controller
         return redirect()
             ->route('currency.edit', compact('currency'))
             ->with('success', trans('messages.currencyUpdated'));
+    }
+
+    /**
+     * Convert the incoming country code to
+     * Example: es-DO
+     * @param $incomingCode string
+     * @return string
+     */
+    private function convertCode($incomingCode)
+    {
+        // First, we separate by the _ into an array to get the
+        // language and them the country
+        $code = (strpos($incomingCode, "-") === false) ?
+            explode("_", $incomingCode) :
+            explode("-", $incomingCode);
+
+        // Next, we lowercase the language
+        $language = strtolower($code[0]);
+
+        // Then, we uppercase the country
+        $country = strtoupper($code[1]);
+
+        // Finally we combine this and return
+        // the correct code
+        return "{$language}-{$country}";
     }
 }

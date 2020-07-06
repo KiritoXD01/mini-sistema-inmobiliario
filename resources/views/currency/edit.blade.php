@@ -50,6 +50,17 @@
                             <label for="name">@lang('messages.name')</label>
                             <input type="text" id="name" name="name" required maxlength="255" class="form-control" value="{{ old('name') ?? $currency->name }}" placeholder="@lang('messages.name')...">
                         </div>
+                        <div class="form-group">
+                            <label for="format_code">@lang('messages.formatCode')</label>
+                            <div class="input-group">
+                                <input type="text" id="format_code" name="format_code" required maxlength="5" class="form-control" placeholder="@lang('messages.formatCode') (xx_XX)" pattern="[a-z][a-z][-_][A-Z][A-Z]" value="{{ old('format_code') ?? $currency->format_code }}">
+                                <div class="input-group-append">
+                                    <a href="http://www.webtutoriales.com/articulos/codigos-de-paises-e-idiomas-i18n" class="btn btn-primary" target="_blank">
+                                        <i class="fa fa-globe fa-fw"></i> @lang('messages.showCodes')
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                         @can('currency-status')
                             <div class="form-group">
                                 <br>

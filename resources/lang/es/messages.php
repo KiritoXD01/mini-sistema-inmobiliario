@@ -100,5 +100,7 @@ return [
     'property_level' => "Nivel de la Propiedad",
     "has_water" => "Tiene Agua",
     'has_heating' => "Tiene Calefacción",
-    'has_air_conditioning' => 'Tiene aire acondicionado'
+    'has_air_conditioning' => 'Tiene aire acondicionado',
+    'formatCode' => 'Código de Formato',
+    'showCodes' => 'Ver Códigos'
 ];

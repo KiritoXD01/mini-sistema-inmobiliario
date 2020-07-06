@@ -96,5 +96,7 @@ return [
     'property_level' => "Property Level",
     "has_water" => "Has Water",
     'has_heating' => "Has Heating",
-    'has_air_conditioning' => 'Has air conditioning'
+    'has_air_conditioning' => 'Has air conditioning',
+    'formatCode' => 'Format Code',
+    'showCodes' => 'Show Codes'
 ];

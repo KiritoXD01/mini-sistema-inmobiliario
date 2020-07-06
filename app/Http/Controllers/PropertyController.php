@@ -51,7 +51,7 @@ class PropertyController extends Controller
         $propertyTypes           = PropertyType::select('id', 'name')->where('status', true)->get();
         $propertyLegalConditions = PropertyLegalCondition::select('id', 'name')->where('status', true)->get();
         $countries               = Country::select('id', 'name')->where('status', true)->get();
-        $currencies              = Currency::select('id', 'name', 'rate')->where('status', true)->get();
+        $currencies              = Currency::where('status', true)->get();
         $data = [
             'allPropertyStatus'       => $allPropertyStatus,
             'propertyTypes'           => $propertyTypes,
@@ -86,7 +86,7 @@ class PropertyController extends Controller
         $allPropertyStatus       = PropertyStatus::select('id', 'name')->where('status', true)->get();
         $propertyTypes           = PropertyType::select('id', 'name')->where('status', true)->get();
         $propertyLegalConditions = PropertyLegalCondition::select('id', 'name')->where('status', true)->get();
-        $currencies              = Currency::select('id', 'name', 'rate')->where('status', true)->get();
+        $currencies              = Currency::where('status', true)->get();
         $countries               = Country::select('id', 'name')->where('status', true)->get();
         $cities                  = City::select('id', 'name')
                                         ->where([

@@ -88,7 +88,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('currency.index') }}">
                 <i class="fas fa-fw fa-dollar-sign"></i>
-                <span>@lang('messages.currency')</span>
+                <span>@lang('messages.currencies')</span>
             </a>
         </li>
     @endcan

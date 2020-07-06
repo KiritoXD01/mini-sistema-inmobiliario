@@ -44,6 +44,17 @@
                             <input type="text" id="name" name="name" required maxlength="255" class="form-control" value="{{ old('name') }}" placeholder="@lang('messages.name')...">
                         </div>
                         <div class="form-group">
+                            <label for="format_code">@lang('messages.formatCode')</label>
+                            <div class="input-group">
+                                <input type="text" id="format_code" name="format_code" required maxlength="5" class="form-control" placeholder="@lang('messages.formatCode') (xx_XX)" pattern="[a-z][a-z][-_][A-Z][A-Z]" value="{{ old('format_code') }}">
+                                <div class="input-group-append">
+                                    <a href="http://www.webtutoriales.com/articulos/codigos-de-paises-e-idiomas-i18n" class="btn btn-primary" target="_blank">
+                                        <i class="fa fa-globe fa-fw"></i> @lang('messages.showCodes')
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="custom-control custom-switch">
                                 <input type="hidden" name="status" value="0">
                                 <input type="checkbox" class="custom-control-input" id="status" name="status" checked value="1">
