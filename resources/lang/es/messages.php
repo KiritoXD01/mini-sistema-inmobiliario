@@ -94,5 +94,11 @@ return [
     'convertedPrice' => "Precio Convertido",
     'images' => 'Imágenes',
     'bedroom_quantity' => 'Cantidad de Habitaciones',
-    'bathroom_quantity' => 'Cantidad de Baños'
+    'bathroom_quantity' => 'Cantidad de Baños',
+    'lounge_quantity' => "Cantidad de Salas",
+    'kitchen_quantity' => "Cantidad de Cocinas",
+    'property_level' => "Nivel de la Propiedad",
+    "has_water" => "Tiene Agua",
+    'has_heating' => "Tiene Calefacción",
+    'has_air_conditioning' => 'Tiene aire acondicionado'
 ];

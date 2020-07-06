@@ -85,9 +85,6 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="lounge_quantity">@lang('messages.lounge_quantity')</label>
-                        </div>
-                        <div class="form-group">
                             <div class="custom-control custom-switch">
                                 <input type="hidden" name="status" value="0">
                                 <input type="checkbox" class="custom-control-input" id="status" name="status" checked value="1">
@@ -127,6 +124,36 @@
                         <div class="form-group">
                             <label for="bathroom_quantity">@lang('messages.bathroom_quantity')</label>
                             <input type="text" id="bathroom_quantity" name="bathroom_quantity" class="form-control" required value="{{ old('bathroom_quantity') }}" placeholder="@lang('messages.bathroom_quantity')..." onkeypress="return isNumberKey(event)">
+                        </div>
+                        <div class="form-group">
+                            <label for="parking_quantity">@lang('messages.parking_quantity')</label>
+                            <input type="text" id="parking_quantity" name="parking_quantity" class="form-control" required value="{{ old('parking_quantity') }}" placeholder="@lang('messages.parking_quantity')..." onkeypress="return isNumberKey(event)">
+                        </div>
+                        <div class="form-group">
+                            <label for="property_level">@lang('messages.property_level')</label>
+                            <input type="text" id="property_level" name="property_level" class="form-control" required value="{{ old('property_level') }}" placeholder="@lang('messages.property_level')..." onkeypress="return isNumberKey(event)">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <div class="custom-control custom-switch">
+                                    <input type="hidden" name="has_water" value="0">
+                                    <input type="checkbox" class="custom-control-input" id="has_water" name="has_water" value="1">
+                                    <label class="custom-control-label" for="has_water">@lang('messages.has_water')</label>
+                                </div>
+                                <br>
+                                <div class="custom-control custom-switch">
+                                    <input type="hidden" name="has_heating" value="0">
+                                    <input type="checkbox" class="custom-control-input" id="has_heating" name="has_heating" value="1">
+                                    <label class="custom-control-label" for="has_heating">@lang('messages.has_heating')</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="custom-control custom-switch">
+                                    <input type="hidden" name="has_air_conditioning" value="0">
+                                    <input type="checkbox" class="custom-control-input" id="has_air_conditioning" name="has_air_conditioning" value="1">
+                                    <label class="custom-control-label" for="has_air_conditioning">@lang('messages.has_air_conditioning')</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

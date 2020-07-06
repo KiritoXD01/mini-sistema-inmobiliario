@@ -91,6 +91,23 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="lounge_quantity">@lang('messages.lounge_quantity')</label>
+                            <input type="text" id="lounge_quantity" name="lounge_quantity" class="form-control" required value="{{ old('lounge_quantity') ?? $property->lounge_quantity }}" placeholder="@lang('messages.lounge_quantity')..." onkeypress="return isNumberKey(event)">
+                        </div>
+                        <div class="form-group">
+                            <label for="kitchen_quantity">@lang('messages.kitchen_quantity')</label>
+                            <input type="text" id="kitchen_quantity" name="kitchen_quantity" class="form-control" required value="{{ old('kitchen_quantity') ?? $property->kitchen_quantity }}" placeholder="@lang('messages.kitchen_quantity')..." onkeypress="return isNumberKey(event)">
+                        </div>
+                        @can('property-status')
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="hidden" name="status" value="0">
+                                    <input type="checkbox" class="custom-control-input" id="status" name="status" @if($property->status) checked @endif value="1">
+                                    <label class="custom-control-label" for="status">@lang('messages.status')</label>
+                                </div>
+                            </div>
+                        @endcan
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -120,16 +137,44 @@
                                 @endforeach
                             </select>
                         </div>
-                        @can('property-status')
-                            <div class="form-group">
+                        <div class="form-group">
+                            <label for="bedroom_quantity">@lang('messages.bedroom_quantity')</label>
+                            <input type="text" id="bedroom_quantity" name="bedroom_quantity" class="form-control" required value="{{ old('bedroom_quantity') ?? $property->bedroom_quantity }}" placeholder="@lang('messages.bedroom_quantity')..." onkeypress="return isNumberKey(event)">
+                        </div>
+                        <div class="form-group">
+                            <label for="bathroom_quantity">@lang('messages.bathroom_quantity')</label>
+                            <input type="text" id="bathroom_quantity" name="bathroom_quantity" class="form-control" required value="{{ old('bathroom_quantity') ?? $property->bathroom_quantity }}" placeholder="@lang('messages.bathroom_quantity')..." onkeypress="return isNumberKey(event)">
+                        </div>
+                        <div class="form-group">
+                            <label for="parking_quantity">@lang('messages.parking_quantity')</label>
+                            <input type="text" id="parking_quantity" name="parking_quantity" class="form-control" required value="{{ old('parking_quantity') ?? $property->parking_quantity }}" placeholder="@lang('messages.parking_quantity')..." onkeypress="return isNumberKey(event)">
+                        </div>
+                        <div class="form-group">
+                            <label for="property_level">@lang('messages.property_level')</label>
+                            <input type="text" id="property_level" name="property_level" class="form-control" required value="{{ old('property_level') ?? $property->property_level }}" placeholder="@lang('messages.property_level')..." onkeypress="return isNumberKey(event)">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <div class="custom-control custom-switch">
+                                    <input type="hidden" name="has_water" value="0">
+                                    <input type="checkbox" class="custom-control-input" id="has_water" name="has_water" @if($property->has_water) checked @endif value="1">
+                                    <label class="custom-control-label" for="has_water">@lang('messages.has_water')</label>
+                                </div>
                                 <br>
                                 <div class="custom-control custom-switch">
-                                    <input type="hidden" name="status" value="0">
-                                    <input type="checkbox" class="custom-control-input" id="status" name="status" @if($property->status) checked @endif value="1">
-                                    <label class="custom-control-label" for="status">@lang('messages.status')</label>
+                                    <input type="hidden" name="has_heating" value="0">
+                                    <input type="checkbox" class="custom-control-input" id="has_heating" name="has_heating" @if($property->has_heating) checked @endif value="1">
+                                    <label class="custom-control-label" for="has_heating">@lang('messages.has_heating')</label>
                                 </div>
                             </div>
-                        @endcan
+                            <div class="col-6">
+                                <div class="custom-control custom-switch">
+                                    <input type="hidden" name="has_air_conditioning" value="0">
+                                    <input type="checkbox" class="custom-control-input" id="has_air_conditioning" name="has_air_conditioning" @if($property->has_air_conditioning) checked @endif value="1">
+                                    <label class="custom-control-label" for="has_air_conditioning">@lang('messages.has_air_conditioning')</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">

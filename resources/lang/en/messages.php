@@ -89,5 +89,12 @@ return [
     'convertedPrice' => "Converted Price",
     'images' => 'Images',
     'bedroom_quantity' => 'Bedroom Quantity',
-    'bathroom_quantity' => 'Bathroom Quantity'
+    'bathroom_quantity' => 'Bathroom Quantity',
+    'lounge_quantity' => "Lounge Quantity",
+    'parking_quantity' => "Parking Quantity",
+    'kitchen_quantity' => "Kitchen Quantity",
+    'property_level' => "Property Level",
+    "has_water" => "Has Water",
+    'has_heating' => "Has Heating",
+    'has_air_conditioning' => 'Has air conditioning'
 ];
