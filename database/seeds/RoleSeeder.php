@@ -19,15 +19,5 @@ class RoleSeeder extends Seeder
         ]);
         $permissions = Permission::pluck('id')->all();
         $admin->syncPermissions($permissions);
-
-        // Buyer Role
-        Role::create([
-            'name' => strtoupper('buyer')
-        ]);
-
-        // Seller Role
-        Role::create([
-            'name' => strtoupper('seller')
-        ]);
     }
 }

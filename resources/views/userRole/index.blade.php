@@ -55,7 +55,7 @@
                                                 <i class="fa fa-eye fa-fw"></i> @lang('messages.show')
                                             </a>
                                         @endcan
-                                        @if($userRole->id > 3)
+                                        @if($userRole->id > 1)
                                             <div class="dropdown-divider"></div>
                                             @can('user-role-edit')
                                                 <a class="dropdown-item" href="{{ route('userRole.edit', $userRole->id) }}">
