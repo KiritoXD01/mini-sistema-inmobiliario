@@ -219,3 +219,7 @@ Route::group(['prefix' => 'currency'], function(){
     //DELETE: Deletes and user
     Route::delete('/{currency}', 'CurrencyController@destroy')->middleware('auth')->name('currency.destroy');
 });
+
+Route::group(['prefix' => 'logs'], function() {
+    
+});

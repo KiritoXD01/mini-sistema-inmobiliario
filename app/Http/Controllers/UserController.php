@@ -108,12 +108,12 @@ class UserController extends Controller
             'firstname' => ['required', 'string', 'max:255'],
             'lastname'  => ['required', 'string', 'max:255'],
             'email'     => ['required', 'email:rfc', 'max:255', Rule::unique('users')->ignoreModel($user)],
-            'password'  => ['nullable', 'string', 'min:8']
+            'password'  => ['nullable', 'string', 'min:8', 'confirmed']
         ])->validate();
 
         $data             = $request->all();
         $data['email']    = strtolower($data['email']);
-        $data['password'] = bcrypt($data['password']);
+        $data['password'] = (empty($request->password)) ? $user->password : bcrypt($data['password']);
 
         $user->update($data);
         $user->syncRoles($data['role']);

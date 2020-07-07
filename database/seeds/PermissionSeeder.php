@@ -257,6 +257,13 @@ class PermissionSeeder extends Seeder
                 'description' => "Eliminar Moneda"
             ],
             //</editor-fold>
+
+            //<editor-fold desc="Log Permission">
+            [
+                'name'        => "log-show",
+                'description' => "Mostrar Logs"
+            ]
+            //</editor-fold>
         ];
 
         // Take all the permission and loop over them

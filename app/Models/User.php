@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles;
+    use Notifiable, HasRoles, LogsActivity;
 
     /**
      * The table that relates to this model
@@ -61,5 +62,24 @@ class User extends Authenticatable
     public function getFullNameAttribute()
     {
         return "{$this->firstname} {$this->lastname}";
+    }
+
+    /**
+     * Set the attributes that will be logged
+     */
+    protected static $logFillable  = true;
+
+    /**
+     * Set the log name
+     */
+    protected static $logName = "User Log";
+
+    /**
+     * Sets the custom description for the log
+     */
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        $user = (auth()->check()) ? auth()->user()->full_name : "SYSTEM";
+        return "This model has been {$eventName} by {$user}";
     }
 }
