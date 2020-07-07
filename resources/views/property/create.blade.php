@@ -93,6 +93,14 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="lounge_quantity">@lang('messages.lounge_quantity')</label>
+                            <input type="text" id="lounge_quantity" name="lounge_quantity" class="form-control" required value="{{ old('lounge_quantity') }}" placeholder="@lang('messages.lounge_quantity')..." onkeypress="return isNumberKey(event)">
+                        </div>
+                        <div class="form-group">
+                            <label for="kitchen_quantity">@lang('messages.kitchen_quantity')</label>
+                            <input type="text" id="kitchen_quantity" name="kitchen_quantity" class="form-control" required value="{{ old('kitchen_quantity') }}" placeholder="@lang('messages.kitchen_quantity')..." onkeypress="return isNumberKey(event)">
+                        </div>
+                        <div class="form-group">
                             <div class="custom-control custom-switch">
                                 <input type="hidden" name="status" value="0">
                                 <input type="checkbox" class="custom-control-input" id="status" name="status" checked value="1">
