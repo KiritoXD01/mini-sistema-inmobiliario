@@ -33,7 +33,7 @@
             </div>
         @endif
         <div class="table-responsive">
-            <table class="table table-hover" id="datatable">
+            <table class="table table-hover" id="datatable" style="width: 100%;">
                 <thead>
                 <tr>
                     <th>@lang('messages.firstname')</th>
@@ -313,7 +313,7 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <select name="role[]" class="form-control" style="width: 100%;" required>
+                                <select name="role[]" id="role-${id}" class="form-control" style="width: 100%;" required>
                                     <option value="" selected hidden disabled>-- @lang('messages.userRole') --</option>
                                         @foreach($roles as $role)
                                             <option value="{{ $role }}">{{ $role }}</option>
@@ -334,6 +334,11 @@
                     </tr>
                 `;
             $("#listItemsToAdd").append(html);
+            $("[name*=role]").each(function(){
+                $(`#${this.id}`).select2({
+                    theme: 'bootstrap4'
+                });
+            });
         }
 
         function removeItem(id)

@@ -33,7 +33,7 @@
             </div>
         @endif
         <div class="table-responsive">
-            <table class="table table-hover" id="datatable">
+            <table class="table table-hover" id="datatable" style="width: 100%;">
                 <thead>
                     <tr>
                         <th>@lang('messages.name')</th>
