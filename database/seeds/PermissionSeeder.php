@@ -260,7 +260,7 @@ class PermissionSeeder extends Seeder
 
             //<editor-fold desc="Log Permission">
             [
-                'name'        => "log-show",
+                'name'        => "log-list",
                 'description' => "Mostrar Logs"
             ]
             //</editor-fold>

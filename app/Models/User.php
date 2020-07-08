@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\LogType;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -72,7 +73,7 @@ class User extends Authenticatable
     /**
      * Set the log name
      */
-    protected static $logName = "User Log";
+    protected static $logName = LogType::USER_LOG;
 
     /**
      * Sets the custom description for the log
