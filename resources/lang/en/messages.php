@@ -98,5 +98,7 @@ return [
     'has_heating' => "Has Heating",
     'has_air_conditioning' => 'Has air conditioning',
     'formatCode' => 'Format Code',
-    'showCodes' => 'Show Codes'
+    'showCodes' => 'Show Codes',
+    'causer' => 'Causer',
+    'affectedItem' => 'Affected Item'
 ];

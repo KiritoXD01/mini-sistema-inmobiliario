@@ -102,5 +102,7 @@ return [
     'has_heating' => "Tiene Calefacción",
     'has_air_conditioning' => 'Tiene aire acondicionado',
     'formatCode' => 'Código de Formato',
-    'showCodes' => 'Ver Códigos'
+    'showCodes' => 'Ver Códigos',
+    'causer' => 'Causante',
+    'affectedItem' => 'Elemento Afectado'
 ];

@@ -103,7 +103,15 @@
         </li>
     @endcan
 
-    @can('log')
+    @can('log-list')
+    <!-- Nav Item - Roles -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('activity.index') }}">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Logs</span>
+        </a>
+    </li>
+    @endcan
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

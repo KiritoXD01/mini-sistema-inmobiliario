@@ -220,6 +220,7 @@ Route::group(['prefix' => 'currency'], function(){
     Route::delete('/{currency}', 'CurrencyController@destroy')->middleware('auth')->name('currency.destroy');
 });
 
-Route::group(['prefix' => 'logs'], function() {
-    
+Route::group(['prefix' => 'activity'], function() {
+    //GET: Get all logs
+    Route::get('/', 'ActivityController@index')->middleware('auth')->name('activity.index');
 });

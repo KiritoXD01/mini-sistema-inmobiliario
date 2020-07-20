@@ -77,6 +77,8 @@ class User extends Authenticatable
 
     /**
      * Sets the custom description for the log
+     * @param string $eventName
+     * @return string
      */
     public function getDescriptionForEvent(string $eventName): string
     {
