@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use App\Enums\LogType;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Country extends Model
 {
+    use LogsActivity;
+
     /**
      * The table that relates to this model
      */
@@ -46,5 +50,26 @@ class Country extends Model
     public function cities()
     {
         return $this->hasMany('App\Models\City', 'country_id', 'id');
+    }
+
+    /**
+     * Set the attributes that will be logged
+     */
+    protected static $logFillable  = true;
+
+    /**
+     * Set the log name
+     */
+    protected static $logName = LogType::COUNTRY_LOG;
+
+    /**
+     * Sets the custom description for the log
+     * @param string $eventName
+     * @return string
+     */
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        $user = (auth()->check()) ? auth()->user()->full_name : "SYSTEM";
+        return "This model has been {$eventName} by {$user}";
     }
 }

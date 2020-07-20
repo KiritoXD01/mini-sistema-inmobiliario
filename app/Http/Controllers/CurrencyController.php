@@ -137,7 +137,7 @@ class CurrencyController extends Controller
         ]);
 
         return redirect()
-            ->route('currency.edit', compact('currency'))
+            ->route('currency.index')
             ->with('success', trans('messages.currencyUpdated'));
     }
 

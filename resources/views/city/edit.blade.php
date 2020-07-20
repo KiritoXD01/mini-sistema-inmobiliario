@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <div class="custom-control custom-switch">
                                     <input type="hidden" name="status" value="0">
-                                    <input type="checkbox" class="custom-control-input" id="status" name="status" checked value="1">
+                                    <input type="checkbox" class="custom-control-input" id="status" name="status" @if($city->status) checked @endif value="1">
                                     <label class="custom-control-label" for="status">@lang('messages.status')</label>
                                 </div>
                             </div>

@@ -39,6 +39,16 @@
                                 <td>
                                     @if($activity->log_name == App\Enums\LogType::USER_LOG)
                                         {{ App\Models\User::find($activity->subject_id)->full_name }}
+                                    @elseif($activity->log_name == App\Enums\LogType::COUNTRY_LOG)
+                                        {{ App\Models\Country::find($activity->subject_id)->name }}
+                                    @elseif($activity->log_name == App\Enums\LogType::CITY_LOG)
+                                        {{ App\Models\City::find($activity->subject_id)->name }}
+                                    @elseif($activity->log_name == App\Enums\LogType::PROPERTY_TYPE_LOG)
+                                        {{ App\Models\PropertyType::find($activity->subject_id)->name }}
+                                    @elseif($activity->log_name == App\Enums\LogType::PROPERTY_STATUS_LOG)
+                                        {{ App\Models\PropertyStatus::find($activity->subject_id)->name }}
+                                    @else
+                                        Undefined
                                     @endif
                                 </td>
                                 <td>{{ $activity->created_at }}</td>
@@ -56,7 +66,7 @@
     <script>
         $(document).ready(function(){
             $("#datatable").dataTable({
-                "order": [[ 0, "asc" ]]
+                "order": [[ 4, "asc" ]]
             })
         });
     </script>
