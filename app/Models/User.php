@@ -58,6 +58,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the properties that below this user
+     */
+    public function propertySellers()
+    {
+        return $this->hasMany('App\Models\SellerProperty', 'user_id', 'id');
+    }
+
+    /**
      * Returns the full name
      */
     public function getFullNameAttribute()

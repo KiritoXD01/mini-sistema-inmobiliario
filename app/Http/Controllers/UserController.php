@@ -55,7 +55,11 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::where('status', true)->pluck('name', 'name')->all();
-        return view('user.edit', compact('user', 'roles'));
+        $data = [
+            'roles' => $roles,
+            'user'  => $user
+        ];
+        return view('user.edit', $data);
     }
 
     /**

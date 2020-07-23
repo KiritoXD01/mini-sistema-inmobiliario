@@ -23,12 +23,14 @@ class PropertyController extends Controller
         /**
          * Sets the permissions for this controller
          */
-        $this->middleware('permission:property-list|property-create|property-edit|property-delete|property', ['only' => ['index','store']]);
-        $this->middleware('permission:property-show', ['only' => ['show']]);
-        $this->middleware('permission:property-create', ['only' => ['create','store']]);
-        $this->middleware('permission:property-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:property-status', ['only' => ['changeStatus']]);
-        $this->middleware('permission:property-delete', ['only' => ['destroy']]);
+        if (auth()->check() && auth()->user()->hasRole("ADMIN")) {
+            $this->middleware('permission:property-list|property-create|property-edit|property-delete|property-status', ['only' => ['index','store']]);
+            $this->middleware('permission:property-show', ['only' => ['show']]);
+            $this->middleware('permission:property-create', ['only' => ['create','store']]);
+            $this->middleware('permission:property-edit', ['only' => ['edit','update']]);
+            $this->middleware('permission:property-status', ['only' => ['changeStatus']]);
+            $this->middleware('permission:property-delete', ['only' => ['destroy']]);
+        }
     }
 
     /**
@@ -37,7 +39,13 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = Property::all();
+        if (auth()->check() && auth()->user()->hasRole("SELLER")) {
+            $properties = [];
+        }
+        else {
+            $properties = Property::all();
+        }
+
         return view('property.index', compact('properties'));
     }
 

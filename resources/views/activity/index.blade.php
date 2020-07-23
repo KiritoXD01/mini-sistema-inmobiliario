@@ -47,6 +47,12 @@
                                         {{ App\Models\PropertyType::find($activity->subject_id)->name }}
                                     @elseif($activity->log_name == App\Enums\LogType::PROPERTY_STATUS_LOG)
                                         {{ App\Models\PropertyStatus::find($activity->subject_id)->name }}
+                                    @elseif($activity->log_name == App\Enums\LogType::CURRENCY_LOG)
+                                        {{ App\Models\Currency::find($activity->subject_id)->name }}
+                                    @elseif($activity->log_name == App\Enums\LogType::PROPERTY_LEGAL_CONDITION)
+                                        {{ App\Models\PropertyLegalCondition::find($activity->subject_id)->name }}
+                                    @elseif($activity->log_name == App\Enums\LogType::PROPERTY_LOG)
+                                        {{ App\Models\Property::find($activity->subject_id)->name }}
                                     @else
                                         Undefined
                                     @endif

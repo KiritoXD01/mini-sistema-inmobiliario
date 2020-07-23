@@ -104,5 +104,6 @@ return [
     'formatCode' => 'Código de Formato',
     'showCodes' => 'Ver Códigos',
     'causer' => 'Causante',
-    'affectedItem' => 'Elemento Afectado'
+    'affectedItem' => 'Elemento Afectado',
+    'assignedProperties' => 'Propiedades Asignadas'
 ];

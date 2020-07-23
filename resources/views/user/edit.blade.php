@@ -99,6 +99,77 @@
             </div>
         </div>
     </form>
+
+    @if($user->hasRole("SELLER"))
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-6">
+                        <i class="fa fa-home fa-fw"></i> @lang('messages.assignedProperties')
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn btn-primary float-right" id="btnAddProperty">
+                            <i class="fa fa-fw fa-home"></i> @lang('messages.add') @lang('messages.property')
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="datatable" style="width: 100%;">
+                        <thead>
+                        <tr>
+                            <th>@lang('messages.property')</th>
+                            <th>@lang('messages.show')</th>
+                            <th>@lang('messages.delete')</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($user->propertySellers as $property)
+                                <tr>
+                                    <td>{{ $property->property->name }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-block">
+                                            <i class="fa fa-eye fa-fw"></i> @lang('messages.show') @lang('messages.property')
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-block">
+                                            <i class="fa fa-trash fa-fw"></i> @lang('messages.delete') @lang('messages.property')
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- The Modal -->
+        <div class="modal fade" id="ModalAddProperty">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <i class="fa fa-home fa-fw"></i> @lang('messages.add') @lang('messages.property')
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="post" id="formProperty">
+                            @csrf
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
 @endsection
 
 @section('javascript')
@@ -123,6 +194,16 @@
             $("#role").select2({
                 theme: 'bootstrap4'
             });
+
+            $("#datatable").dataTable();
+
+            @if($user->hasRole("SELLER"))
+                $("#btnAddProperty").click(function(){
+                    $("#ModalAddProperty").modal({
+                        backdrop: 'static'
+                    });
+                });
+            @endif
         });
     </script>
 @endsection

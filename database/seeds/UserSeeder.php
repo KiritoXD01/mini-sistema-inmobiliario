@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'code'              => Str::random(8)
         ]);
 
-        //Asign role to user
+        // Assign role to user
         $user->assignRole(strtoupper('admin'));
     }
 }

@@ -100,5 +100,6 @@ return [
     'formatCode' => 'Format Code',
     'showCodes' => 'Show Codes',
     'causer' => 'Causer',
-    'affectedItem' => 'Affected Item'
+    'affectedItem' => 'Affected Item',
+    'assignedProperties' => 'Assigned Properties'
 ];

@@ -144,4 +144,12 @@ class Property extends Model
         $user = (auth()->check()) ? auth()->user()->full_name : "SYSTEM";
         return "This model has been {$eventName} by {$user}";
     }
+
+    /**
+     * Get the sellers that have this property
+     */
+    public function users()
+    {
+        return $this->hasMany("App\Models\SellerProperty", 'property_id', 'id');
+    }
 }
