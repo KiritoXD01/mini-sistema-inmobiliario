@@ -134,9 +134,13 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger btn-block">
-                                            <i class="fa fa-trash fa-fw"></i> @lang('messages.delete') @lang('messages.property')
-                                        </button>
+                                        <form action="" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-block">
+                                                <i class="fa fa-trash fa-fw"></i> @lang('messages.delete') @lang('messages.property')
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -149,22 +153,34 @@
         <div class="modal fade" id="ModalAddProperty">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">
-                            <i class="fa fa-home fa-fw"></i> @lang('messages.add') @lang('messages.property')
-                        </h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" method="post" id="formProperty">
-                            @csrf
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
+                    <form action="{{ route('property.assignPropertiesToSeller', $user->id) }}" method="post" id="formProperty">
+                        @csrf
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                <i class="fa fa-home fa-fw"></i> @lang('messages.add') @lang('messages.property')
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="properties">@lang('messages.properties')</label>
+                                <select id="properties" name="properties[]" class="form-control" required style="width: 100%;" multiple>
+                                    @foreach($properties as $property)
+                                        <option value="{{ $property->id }}">{{ $property->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                <i class="fa fa-fw fa-times"></i> @lang('messages.close')
+                            </button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-fw fa-save"></i> @lang('messages.save')
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -201,6 +217,23 @@
                 $("#btnAddProperty").click(function(){
                     $("#ModalAddProperty").modal({
                         backdrop: 'static'
+                    });
+                });
+
+                $("#properties").select2({
+                    theme: 'bootstrap4',
+                    placeholder: "@lang('messages.add') @lang('messages.property')"
+                });
+
+                $("#formProperty").submit(function() {
+                    Swal.fire({
+                        title: "@lang('messages.pleaseWait')",
+                        allowEscapeKey: false,
+                        allowOutsideClick: false,
+                        showConfirmButton: false,
+                        onOpen: () => {
+                            Swal.showLoading();
+                        }
                     });
                 });
             @endif

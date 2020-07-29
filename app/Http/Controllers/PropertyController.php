@@ -10,6 +10,7 @@ use App\Models\PropertyImage;
 use App\Models\PropertyLegalCondition;
 use App\Models\PropertyStatus;
 use App\Models\PropertyType;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -272,4 +273,26 @@ class PropertyController extends Controller
 
         return response()->json($data);
     }
+
+    /**
+     * Assigns a list of properties to a seller
+     * @param Request $request
+     * @param User $user
+     */
+    public function assignPropertiesToSeller(Request $request, User $user)
+    {
+        foreach ($request->properties as $property)
+        {
+            $user->propertySellers()->create([
+                'property_id' => $property,
+                'assigned_by' => auth()->user()->id
+            ]);
+        }
+
+        return redirect()
+                    ->route('user.edit', compact('user'))
+                    ->with('success', trans('messages.propertiesAssignedSuccessfully'));
+    }
+
+    /** Detach a property from a seller */
 }

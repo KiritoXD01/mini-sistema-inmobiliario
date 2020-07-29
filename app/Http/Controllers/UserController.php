@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\UserExport;
+use App\Models\Property;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -59,6 +60,16 @@ class UserController extends Controller
             'roles' => $roles,
             'user'  => $user
         ];
+
+        if ($user->hasRole("SELLER"))
+        {
+            $properties = Property::whereNotIn('id', $user->propertySellers->pluck('property_id'))
+                                    ->where('status', true)
+                                    ->get();
+
+            $data['properties'] = $properties;
+        }
+
         return view('user.edit', $data);
     }
 

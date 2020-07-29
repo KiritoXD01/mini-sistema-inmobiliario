@@ -195,6 +195,8 @@ Route::group(['prefix' => 'property'], function(){
     Route::post('/', 'PropertyController@store')->middleware('auth')->name('property.store');
     //POST: Change the user status
     Route::post('/changeStatus/{property}', 'PropertyController@changeStatus')->middleware('auth')->name('property.changeStatus');
+    //POST: Assign properties to user
+    Route::post('/assignProperties/{user}', 'PropertyController@assignPropertiesToSeller')->middleware('auth')->name('property.assignPropertiesToSeller');
     //PATCH: Update an existing user
     Route::patch('/{property}', 'PropertyController@update')->middleware('auth')->name('property.update');
     //DELETE: Deletes and user

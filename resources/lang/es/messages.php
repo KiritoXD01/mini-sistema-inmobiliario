@@ -105,5 +105,6 @@ return [
     'showCodes' => 'Ver Códigos',
     'causer' => 'Causante',
     'affectedItem' => 'Elemento Afectado',
-    'assignedProperties' => 'Propiedades Asignadas'
+    'assignedProperties' => 'Propiedades Asignadas',
+    'propertiesAssignedSuccessfully' => 'Propiedades asignadas exitosamente'
 ];

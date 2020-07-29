@@ -125,6 +125,19 @@ class Property extends Model
     }
 
     /**
+     * Get the first image
+     */
+    public function firstPropertyImage()
+    {
+        return $this
+                    ->hasOne('App\Models\PropertyImage', 'property_id', 'id')
+                    ->oldest()
+                    ->withDefault([
+                        'path' => null
+                    ]);
+    }
+
+    /**
      * Set the attributes that will be logged
      */
     protected static $logFillable  = true;

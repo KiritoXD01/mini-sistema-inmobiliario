@@ -101,5 +101,6 @@ return [
     'showCodes' => 'Show Codes',
     'causer' => 'Causer',
     'affectedItem' => 'Affected Item',
-    'assignedProperties' => 'Assigned Properties'
+    'assignedProperties' => 'Assigned Properties',
+    'propertiesAssignedSuccessfully' => 'Properties Assigned Successfully'
 ];
